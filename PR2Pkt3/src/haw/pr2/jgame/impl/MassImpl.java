@@ -10,7 +10,6 @@ public class MassImpl extends AbstractValuesImpl<Mass> implements Mass{
 	
 	private MassImpl(double value) {
 		super(value);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -21,7 +20,6 @@ public class MassImpl extends AbstractValuesImpl<Mass> implements Mass{
 
 	@Override
 	public Mass fromPrototype(double value) {
-	
 		return valueOf(value);
 	}
 

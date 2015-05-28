@@ -1,6 +1,7 @@
 package haw.pr2.jgame.impl;
 
 import haw.pr2.jgame.interfaces.Length;
+import haw.pr2.jgame.interfaces.Mass;
 
 public class LengthImpl extends AbstractValuesImpl<Length> implements Length {
 
@@ -25,8 +26,7 @@ public class LengthImpl extends AbstractValuesImpl<Length> implements Length {
 
 	@Override
 	public boolean checkInstance(Object obj) {
-		// TODO Auto-generated method stub
-		return false;
+		return obj instanceof Length;
 	}
 
 

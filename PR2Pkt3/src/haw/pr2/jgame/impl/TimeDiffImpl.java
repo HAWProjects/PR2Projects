@@ -1,12 +1,18 @@
 package haw.pr2.jgame.impl;
 
+import haw.pr2.jgame.interfaces.Length;
+import haw.pr2.jgame.interfaces.Mass;
 import haw.pr2.jgame.interfaces.TimeDiff;
 
 public class TimeDiffImpl extends AbstractValuesImpl<TimeDiff> implements TimeDiff {
 
+	   public static TimeDiff valueOf(double inValue) {
+	        return new TimeDiffImpl(inValue);
+	    }
+	
+	
 	private TimeDiffImpl(double value) {
 		super(value);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -17,14 +23,12 @@ public class TimeDiffImpl extends AbstractValuesImpl<TimeDiff> implements TimeDi
 
 	@Override
 	public TimeDiff fromPrototype(double value) {
-		// TODO Auto-generated method stub
-		return null;
+		return valueOf(value);
 	}
 
 	@Override
 	public boolean checkInstance(Object obj) {
-		// TODO Auto-generated method stub
-		return false;
+		return obj instanceof TimeDiff;
 	}
 
 }
