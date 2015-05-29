@@ -1,5 +1,7 @@
 package haw.pr2.jgame.impl;
 
+import haw.pr2.jgame.interfaces.Acc;
+import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Mass;
 
 public class MassImpl extends AbstractValuesImpl<Mass> implements Mass{
@@ -12,13 +14,7 @@ public class MassImpl extends AbstractValuesImpl<Mass> implements Mass{
 		super(value);
 	}
 
-	@Override
-	public Mass add(Mass other) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
+		@Override
 	public Mass fromPrototype(double value) {
 		return valueOf(value);
 	}
@@ -26,6 +22,24 @@ public class MassImpl extends AbstractValuesImpl<Mass> implements Mass{
 	@Override
 	public boolean checkInstance(Object obj) {
 		return obj instanceof Mass;
+	}
+
+	@Override
+	public Mass div(double other) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Mass mul(double other) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Force mul(Acc acc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

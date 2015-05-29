@@ -12,10 +12,30 @@ public abstract class AbstractValuesImpl<E extends AbstractValue> implements Abs
 	    public E add(E other) {
 	        return fromPrototype(value() + other.value());
 	    }
+	    
+	    @Override
+	    public E sub(E other) {
+	        return fromPrototype(value() - other.value());
+	    }
+	    
+	    @Override
+	    public E abs(E other) {
+	        return fromPrototype(Math.abs(other.value()));
+	    }
+	    
+	    @Override
+	    public E signum(E other) {
+	        return fromPrototype(Math.signum(other.value()));
+	    }
 
 	    @Override
 	    public double value() {
 	        return value;
+	    }
+	    
+	    @Override
+	    public boolean checkInstance(Object obj){
+	    	return false;
 	    }
 	    
 	    @Override

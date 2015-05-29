@@ -16,17 +16,26 @@ public class Factory {
     public static Length lengthInMeter(double meter) {
         return length(meter, LengthUnit.METER, Multiplier.NONE);
     }
-
     
+    public static Length lengthInFeet(double meter) {
+    	return length(meter, LengthUnit.FEET, Multiplier.NONE);
+    }
+    
+    public static Length lengthInKm(double meter) {
+    	return length(meter, LengthUnit.METER, Multiplier.MILLI);
+    }
+
     public static Length length(double value, LengthUnit unit, Multiplier multiplier) {
         return LengthImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
     }
     
-    
-    
     /******************************Mass**********************/
     public static Mass massInKilogramm(double kilogramm) {
         return mass(kilogramm, MassUnit.KILOGRAMM, Multiplier.NONE);
+    }
+    
+    public static Mass massInGramm(double kilogramm) {
+    	return mass(kilogramm, MassUnit.KILOGRAMM, Multiplier.MILLI);
     }
     
     public static Mass mass(double value, MassUnit unit, Multiplier multiplier){
