@@ -2,7 +2,6 @@ package haw.pr2.jgame.impl;
 
 import haw.pr2.jgame.Factory;
 import haw.pr2.jgame.interfaces.Length;
-import haw.pr2.jgame.interfaces.Mass;
 import haw.pr2.jgame.interfaces.Speed;
 import haw.pr2.jgame.interfaces.TimeDiff;
 
@@ -38,11 +37,14 @@ public class LengthImpl extends AbstractValuesImpl<Length> implements Length {
 
 	@Override
 	public TimeDiff div(Speed speed) {
+		
+//		return	Factory.timeInSec(this.value / speed.value());
 		return TimeDiffImpl.valueOf(Factory.lengthInMeter(this.value()).value() / (speed.value()));
 	}
 
 	@Override
 	public Speed div(TimeDiff timeDiff) {
+//		return	Factory.speedInMeterProSeKunde(this.value() / timeDiff.value());
 		return SpeedImpl.valueOf(Factory.lengthInMeter(this.value()).value() / (timeDiff.value()));
 	}
 }

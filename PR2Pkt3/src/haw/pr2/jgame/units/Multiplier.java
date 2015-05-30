@@ -4,7 +4,11 @@ public enum Multiplier {
     NONE(1.0),
     KILO(1000),
     MILLI(0.001),
-    SECINMIN(60.0);
+    HOURINMIN(60.0),
+    MININSEC(60.0),
+    HOURINSEC(3600),
+    KMPROSTUNDEINMETERPROSEKUNDE(0.27777778);
+    
     
         
     private double multiplier;

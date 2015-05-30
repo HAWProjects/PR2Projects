@@ -1,8 +1,8 @@
 package haw.pr2.jgame.impl;
 
+import haw.pr2.jgame.Factory;
 import haw.pr2.jgame.interfaces.Acc;
 import haw.pr2.jgame.interfaces.Length;
-import haw.pr2.jgame.interfaces.Mass;
 import haw.pr2.jgame.interfaces.Speed;
 import haw.pr2.jgame.interfaces.TimeDiff;
 
@@ -11,7 +11,6 @@ public class TimeDiffImpl extends AbstractValuesImpl<TimeDiff> implements TimeDi
 	   public static TimeDiff valueOf(double inValue) {
 	        return new TimeDiffImpl(inValue);
 	    }
-	
 	
 	private TimeDiffImpl(double value) {
 		super(value);
@@ -30,29 +29,25 @@ public class TimeDiffImpl extends AbstractValuesImpl<TimeDiff> implements TimeDi
 
 	@Override
 	public TimeDiff div(double other) {
-		// TODO Auto-generated method stub
-		return null;
+		return fromPrototype(Factory.timeInSec(this.value()).value() / other);
 	}
 
 
 	@Override
 	public TimeDiff mul(double other) {
-		// TODO Auto-generated method stub
-		return null;
+		return fromPrototype(Factory.timeInSec(this.value()).value() * other);
 	}
 
 
 	@Override
 	public Length mul(Speed speed) {
-		// TODO Auto-generated method stub
-		return null;
+		return LengthImpl.valueOf(Factory.timeInSec(this.value()).value() * speed.value());
 	}
 
 
 	@Override
 	public Speed mul(Acc acc) {
-		// TODO Auto-generated method stub
-		return null;
+		return SpeedImpl.valueOf(Factory.timeInSec(this.value()).value() * acc.value());
 	}
 
 }
