@@ -1,17 +1,23 @@
 package haw.pr2.jgame;
 
+import haw.pr2.jgame.impl.AccImpl;
+import haw.pr2.jgame.impl.ForceImpl;
 import haw.pr2.jgame.impl.LengthImpl;
 import haw.pr2.jgame.impl.MassImpl;
 import haw.pr2.jgame.impl.PowerImpl;
 import haw.pr2.jgame.impl.SpeedImpl;
 import haw.pr2.jgame.impl.TimeDiffImpl;
 import haw.pr2.jgame.impl.WorkImpl;
+import haw.pr2.jgame.interfaces.Acc;
+import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Length;
 import haw.pr2.jgame.interfaces.Mass;
 import haw.pr2.jgame.interfaces.Power;
 import haw.pr2.jgame.interfaces.Speed;
 import haw.pr2.jgame.interfaces.TimeDiff;
 import haw.pr2.jgame.interfaces.Work;
+import haw.pr2.jgame.units.AccUnit;
+import haw.pr2.jgame.units.ForceUnit;
 import haw.pr2.jgame.units.LengthUnit;
 import haw.pr2.jgame.units.MassUnit;
 import haw.pr2.jgame.units.Multiplier;
@@ -22,6 +28,15 @@ import haw.pr2.jgame.units.WorkUnit;
 public class Factory {
 	
 	private Factory(){}
+	
+	/*****************************Acc*************************/
+	public static Acc acc(double value, AccUnit unit, Multiplier multiplier) {
+		return AccImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
+	}
+	
+	public static Acc accInMeterProSeKundeQuadrat(double meterProSecQuadrat) {
+		return acc(meterProSecQuadrat, AccUnit.METERINSECQUADRAT, Multiplier.NONE);
+	}
 	
 	/******************************Length*********************/
     public static Length lengthInMeter(double meter) {
@@ -106,5 +121,15 @@ public class Factory {
     
     public static Work work(double value, WorkUnit unit, Multiplier multiplier){
     	return WorkImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
+    }
+    
+    /*****************************Force*********************/
+    
+    public static Force forceInNewton(double force) {
+    	return force(force, ForceUnit.NEWTON, Multiplier.NONE);
+    }
+    
+    public static Force force(double value, ForceUnit unit, Multiplier multiplier){
+    	return ForceImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
     }
 }

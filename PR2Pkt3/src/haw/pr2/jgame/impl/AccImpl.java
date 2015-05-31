@@ -1,7 +1,9 @@
 package haw.pr2.jgame.impl;
 
+import haw.pr2.jgame.Factory;
 import haw.pr2.jgame.interfaces.Acc;
 import haw.pr2.jgame.interfaces.Force;
+import haw.pr2.jgame.interfaces.Length;
 import haw.pr2.jgame.interfaces.Mass;
 
 public class AccImpl extends AbstractValuesImpl<Acc> implements Acc {
@@ -9,30 +11,34 @@ public class AccImpl extends AbstractValuesImpl<Acc> implements Acc {
 	private AccImpl(double value) {
 		super(value);
 	}
-
-	@Override
-	public Acc div(double other) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public static Acc valueOf(double inValue) {
+		return new AccImpl(inValue);
 	}
-
+	
 	@Override
-	public Acc mul(double other) {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean checkInstance(Object obj) {
+		return obj instanceof Acc;
 	}
 
 	@Override
 	public Acc fromPrototype(double value) {
-		// TODO Auto-generated method stub
-		return null;
+		return valueOf(value);
+	}
+
+	
+	@Override
+	public Acc div(double other) {
+		return fromPrototype(Factory.accInMeterProSeKundeQuadrat(this.value).value() / other);
+	}
+	
+	@Override
+	public Acc mul(double other) {
+		return fromPrototype(Factory.accInMeterProSeKundeQuadrat(this.value).value() * other);
 	}
 
 	@Override
 	public Force mul(Mass mass) {
-		// TODO Auto-generated method stub
-		return null;
+		return ForceImpl.valueOf(Factory.accInMeterProSeKundeQuadrat(this.value()).value() * Factory.massInKilogramm(mass.value()).value());
 	}
-
-	
 }

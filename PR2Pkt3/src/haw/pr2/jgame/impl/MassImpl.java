@@ -1,5 +1,6 @@
 package haw.pr2.jgame.impl;
 
+import haw.pr2.jgame.Factory;
 import haw.pr2.jgame.interfaces.Acc;
 import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Mass;
@@ -26,20 +27,17 @@ public class MassImpl extends AbstractValuesImpl<Mass> implements Mass{
 
 	@Override
 	public Mass div(double other) {
-		// TODO Auto-generated method stub
-		return null;
+		return fromPrototype(Factory.massInKilogramm(this.value()).value() / other);
 	}
 
 	@Override
 	public Mass mul(double other) {
-		// TODO Auto-generated method stub
-		return null;
+		return fromPrototype(Factory.massInKilogramm(this.value()).value() * other);
 	}
 
 	@Override
 	public Force mul(Acc acc) {
-		// TODO Auto-generated method stub
-		return null;
+		return ForceImpl.valueOf(Factory.massInKilogramm(this.value()).value() * Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
 	}
 
 }
