@@ -65,7 +65,7 @@ public class Player extends JGObject
 		System.out.println("Lenkrad .......: " + steeringLevel);
 		System.out.println("POSX:----------- " + car.getPosX());
 		System.out.println("POSY: ~~~~~~~~~~~" + car.getPosY());
-		System.out.println("SPEED: ******************************************************************" + car.getSpeed().value());
+		
 
 	}
 

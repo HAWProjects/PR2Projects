@@ -31,6 +31,7 @@ public enum CarState
 			double proplevel = car.getProplevel();
 			// aktuelle Leistung Auto
 			Power powerProp = car.getPowerPropMax().mul(proplevel);
+			
 			// Antriebskraft
 			Force forcePropMax = calculateForcePropMax(car);  // Newton[kg*m/s**2]
 
@@ -39,12 +40,10 @@ public enum CarState
 
 			// Kraft
 			Force forcePropAbs = powerProp.div(car.getSpeed());
-			
 			if (car.isASRActive())
 			{
 				forcePropAbs = Factory.forceInNewton(Math.min(forcePropMax.value(), (powerProp.div(car.getSpeed())).value()));
 			}
-
 			// Abs
 			checkAbs(car, forceBrakeMax, forcePropMax);
 			
@@ -60,12 +59,15 @@ public enum CarState
 			// Kurvenradius
 
 			// Beschleunigung
+		
 			Acc acc = calculateAcc(car, force);
+		
 
 			// Kinematik
 
 			// Aktuelle Geschwindigkeit nach Beschleunigung
 			Speed carSpeed = car.getSpeed().add(acc.mul(elapsedTime));
+			
 			double courseAngle = car.getCurrentDirection();
 
 			if (carSpeed.value() > -0.2 && carSpeed.value() < 0.2 && proplevel < 0.1)
@@ -85,6 +87,7 @@ public enum CarState
 			car.setPosY(car.getPosY() + deltaY.value());
 			car.setCurrentDirection(courseAngle);
 			car.setSpeed(carSpeed);
+			
 		}
 
 	},
