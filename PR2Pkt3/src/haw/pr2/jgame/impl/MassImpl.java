@@ -37,7 +37,8 @@ public class MassImpl extends AbstractValuesImpl<Mass> implements Mass{
 
 	@Override
 	public Force mul(Acc acc) {
-		return ForceImpl.valueOf(Factory.massInKilogramm(this.value()).value() * Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
+		return Factory.forceInNewton(Factory.massInKilogramm(this.value()).value() / Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
+//		return ForceImpl.valueOf(Factory.massInKilogramm(this.value()).value() * Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
 	}
 
 }

@@ -1,5 +1,7 @@
 package haw.pr2.jgame;
 
+import haw.pr2.jgame.interfaces.TimeDiff;
+
 
 /**
  *
@@ -7,12 +9,12 @@ package haw.pr2.jgame;
  */
 public class Timer {
     private long timeLast;
-    private double timeElapsed;
+    private TimeDiff timeElapsed;
 
     private Timer() {
         
         timeLast = System.currentTimeMillis();
-        timeElapsed = 0.0;
+        timeElapsed = Factory.timeInSec(Konstants.ZERO);
     }
     
     public static Timer valueOf(){
@@ -27,17 +29,17 @@ public class Timer {
         this.timeLast = timeLast;
     }
 
-    public double getTimeElapsed() {
+    public TimeDiff getTimeElapsed() {
         return timeElapsed;
     }
 
-    private void setTimeElapsed(double timeElapsed) {
+    private void setTimeElapsed(TimeDiff timeElapsed) {
         this.timeElapsed = timeElapsed;
     }
     
-    public double update(){
+    public TimeDiff update(){
         long timeCurrent = System.currentTimeMillis();
-        double diff = (timeCurrent - getTimeLast()) / 1000.0;
+        TimeDiff diff = Factory.timeInSec((timeCurrent - getTimeLast()) / 1000.0);
         
         setTimeElapsed(diff);
         setTimeLast(timeCurrent);

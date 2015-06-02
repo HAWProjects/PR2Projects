@@ -1,4 +1,5 @@
 package haw.pr2.jgame;
+import haw.pr2.jgame.interfaces.*;
 
 public enum CarState
 {
@@ -11,7 +12,7 @@ public enum CarState
 			{
 				car.setState(DRIVINGCURVE);
 			}
-			else if (car.getSpeed() < Konstants.MAXLEVEL)
+			else if (car.getSpeed().value() < Konstants.MAXLEVEL)
 			{
 				car.setState(STOPPED);
 			}
@@ -22,81 +23,70 @@ public enum CarState
 		}
 
 		@Override
-		public void step(double elapsedTime, Car car)
+		public void step(TimeDiff elapsedTime, Car car)
 		{
 			 System.out.println("STATE: '''''''''''''''''''''''''" + car.getState());
 			// Dynamik
 			// gaspedalstellung
 			double proplevel = car.getProplevel();
 			// aktuelle Leistung Auto
-			double powerProp = car.getPowerPropMax() * proplevel; // Newton
-																	// [kg*m/s**2]
+			Power powerProp = car.getPowerPropMax().mul(proplevel);
 			// Antriebskraft
-			double forcePropMax = calculateForcePropMax(car); 
+			Force forcePropMax = calculateForcePropMax(car);  // Newton[kg*m/s**2]
 
 			// Bremskraft
-			double forceBrakeMax = (car.getMass() * Konstants.ACCEARTH * -2) * car.getTraktion().getValue() * car.getBrakelevel();
+			Force forceBrakeMax = calculateForceBrakeMax(car);
 
 			// Kraft
-			double forcePropAbs = powerProp / car.getSpeed();
+			Force forcePropAbs = powerProp.div(car.getSpeed());
+			
 			if (car.isASRActive())
 			{
-				forcePropAbs = Math.min(forcePropMax, (powerProp / car.getSpeed()));
+				forcePropAbs = Factory.forceInNewton(Math.min(forcePropMax.value(), (powerProp.div(car.getSpeed())).value()));
 			}
 
 			// Abs
-			if (car.isABSActive())
-			{
-				if (forceBrakeMax > forcePropMax)
-				{
-					forceBrakeMax = forcePropMax;
-				}
-			}
-			else
-			{
-				if (forceBrakeMax > forcePropMax)
-				{
-					car.setState(SLIDING);
-				}
-			}
-
-			double forceProp = forcePropAbs * Math.signum(proplevel);// Newton [kg*m/s**2]
+			checkAbs(car, forceBrakeMax, forcePropMax);
+			
+			Force forceProp = forcePropAbs.mul(Math.signum(proplevel));// Newton [kg*m/s**2]
 
 			// Widerstandskraft
-			double forceDrag = car.getdragConst() * (Math.pow(car.getSpeed(), 2)) * Math.signum(-car.getSpeed()); // Newton
-			// [kg*m/s**2]
+			Force forceDrag =  calculateForceDrag(car); 
+			
+			
 			// Gesamtkraft die in dem Moment wirkt
-			double force = forceProp + forceDrag + forceBrakeMax; // Newton [kg*m/s**2]
+			Force force = calculateForce(forceProp,forceDrag,forceBrakeMax);// Newton [kg*m/s**2]
 
 			// Kurvenradius
 
 			// Beschleunigung
-			double acc = force / car.getMass();
+			Acc acc = calculateAcc(car, force);
 
 			// Kinematik
 
 			// Aktuelle Geschwindigkeit nach Beschleunigung
-			double carSpeed = car.getSpeed() + (acc * elapsedTime);
+			Speed carSpeed = car.getSpeed().add(acc.mul(elapsedTime));
 			double courseAngle = car.getCurrentDirection();
 
-			if (carSpeed > -0.2 && carSpeed < 0.2 && proplevel < 0.1)
+			if (carSpeed.value() > -0.2 && carSpeed.value() < 0.2 && proplevel < 0.1)
 			{
-				carSpeed = Konstants.ZERO;
+				carSpeed = Factory.speedInMeterProSeKunde(Konstants.ZERO);
 			}
 
-			double deltaX = (carSpeed * elapsedTime) * Math.cos(courseAngle);
-			double deltaY = (carSpeed * elapsedTime) * Math.sin(courseAngle);
+			Length deltaX = carSpeed.mul(elapsedTime).mul(Math.cos(courseAngle));
+			Length deltaY = carSpeed.mul(elapsedTime).mul(Math.sin(courseAngle));
 
 			if (car.getSteeringLevel() < 0.1 && car.getSteeringLevel() > -0.1)
 			{
 				car.setSteeringLevel(0.0);
 			}
-			car.setTime(car.getTime() + elapsedTime);
-			car.setPosX(car.getPosX() + deltaX);
-			car.setPosY(car.getPosY() + deltaY);
+			car.setTime(car.getTime().add(elapsedTime));
+			car.setPosX(car.getPosX() + deltaX.value());
+			car.setPosY(car.getPosY() + deltaY.value());
 			car.setCurrentDirection(courseAngle);
 			car.setSpeed(carSpeed);
 		}
+
 	},
 
 	DRIVINGCURVE
@@ -104,11 +94,11 @@ public enum CarState
 		@Override
 		public void switchState(Car car)
 		{
-			if ((Math.abs(car.getSteeringLevel()) < Konstants.MAXSTEERING) && car.getSpeed() > 0.0)
+			if ((Math.abs(car.getSteeringLevel()) < Konstants.MAXSTEERING) && car.getSpeed().value() > 0.0)
 			{
 				car.setState(DRIVINGFORWARD);
 			}
-			else if (car.getSpeed() <= Konstants.MAXLEVEL)
+			else if (car.getSpeed().value() <= Konstants.MAXLEVEL)
 			{
 				car.setState(STOPPED);
 			}
@@ -119,104 +109,86 @@ public enum CarState
 		}
 
 		@Override
-		public void step(double elapsedTime, Car car)
+		public void step(TimeDiff elapsedTime, Car car)
 		{
 			 System.out.println("STATE: '''''''''''''''''''''''''" + car.getState());
 			// gaspedalstellung
 			double proplevel = car.getProplevel();
 
 			// aktuelle Leistung Auto
-			double powerProp = car.getPowerPropMax() * proplevel; // Newton
+			Power powerProp = car.getPowerPropMax().mul(proplevel); // Newton
 
 			// Antriebskraft
-			double forcePropMax =  calculateForcePropMax(car);
+			Force forcePropMax =  calculateForcePropMax(car);
 
 			// Bremskraft
-			double forceBrakeMax = (car.getMass() * Konstants.ACCEARTH * -2) * car.getTraktion().getValue() * car.getBrakelevel();
+			Force forceBrakeMax = calculateForceBrakeMax(car);
 
 			// Kraft
-			double forcePropAbs = 0; // Newton [kg*m/s**2]
+			Force forcePropAbs = Factory.forceInNewton(0.0); // Newton [kg*m/s**2]
 			if (car.isASRActive())
 			{
-				forcePropAbs = Math.min(forcePropMax, (powerProp / car.getSpeed()));
+				forcePropAbs = Factory.forceInNewton(Math.min(forcePropMax.value(), (powerProp.div(car.getSpeed())).value()));
 			}
 			else
 			{
-				forcePropAbs = powerProp / car.getSpeed();
+				forcePropAbs = powerProp.div(car.getSpeed());
 			}
 
 			// Abs
-			if (car.isABSActive())
-			{
-				if (forceBrakeMax > forcePropMax)
-				{
-					forceBrakeMax = forcePropMax;
-				}
-			}
-			else
-			{
-				if (Math.abs(forceBrakeMax) > forcePropMax)
-				{
-					System.out.println("ABS Sliding ******************************");
-					car.setState(SLIDING);
-				}
-			}
+			checkAbs(car, forceBrakeMax, forcePropMax);
 
-			double forceProp = forcePropAbs * Math.signum(proplevel);// Newton
+			Force forceProp = forcePropAbs.mul(Math.signum(proplevel));// Newton
 																		// [kg*m/s**2]
-
+			
 			// Widerstandskraft
-			double forceDrag = car.getdragConst() * (Math.pow(car.getSpeed(), 2)) * Math.signum(-car.getSpeed()); // Newton
-			// [kg*m/s**2]
+			Force forceDrag = calculateForceDrag(car); 
+			
 			// Gesamtkraft die in dem Moment wirkt
-			double force = forceProp + forceDrag + forceBrakeMax; // Newton [kg*m/s**2]
+			Force force = calculateForce(forceProp, forceDrag, forceBrakeMax);
 
 			// Kurvenradius
-			double curveRadius = car.getCurveRadius() / car.getSteeringLevel();
+			Length curveRadius = car.getCurveRadius().div(car.getSteeringLevel());
 
 			// Beschleunigung
-			double acc =  force / car.getMass();;
+			Acc acc =  calculateAcc(car, force);
 
 			// Maximale Beschleunigung
-			double maxAcc = Konstants.ACCEARTH * car.getTraktion().getValue(); // 1 = tractCoeff
+			Acc maxAcc = Konstants.ACCEARTH.mul(car.getTraktion().getValue()); // 1 = tractCoeff
 			
-			double curveAcc = (car.getSpeed() * car.getSpeed()) / Math.abs(curveRadius);
-			if (Math.abs(acc) + curveAcc > maxAcc)
+			Acc curveAcc = car.getSpeed().curveAcc(curveRadius.abs());
+			if (Math.abs(acc.value()) + curveAcc.value() > maxAcc.value())
 			{
 				 car.setState(SLIDING);
 			}
 			// Kinematik
 
 			// Aktuelle Geschwindigkeit nach Beschleunigung
-			double carSpeed = car.getSpeed() + (acc * elapsedTime);
+			Speed carSpeed = car.getSpeed().add(acc.mul(elapsedTime));
 
 			double degree = car.getCurrentDirection();
-			double deltaPos = carSpeed * elapsedTime;
+			Length deltaPos = carSpeed.mul(elapsedTime);
 
-			double deltaCourseAngle = deltaPos / curveRadius;
+			double deltaCourseAngle = deltaPos.value() / curveRadius.value();
 			
 			//Bogenma� in Grad� umrechnen
 //			deltaCourseAngle = (deltaCourseAngle / Math.PI) * 180;
 			
 
-			double courseAngle = (degree + deltaCourseAngle * car.getCurveRadius());
+			double courseAngle = (degree + deltaCourseAngle * car.getCurveRadius().value());
 
-			if (carSpeed > -0.2 && carSpeed < 0.2 && proplevel < 0.1)
-			{
-				carSpeed = Konstants.ZERO;
-			}
 			System.out.println("__________________________"+courseAngle+"------------------------------------------");
 			
-			double deltaX = (deltaPos) * Math.cos(courseAngle);
-			double deltaY = (deltaPos) * Math.sin(courseAngle);
+			Length deltaX = deltaPos.mul(Math.cos(courseAngle));
+			Length deltaY = deltaPos.mul(Math.sin(courseAngle));
 
 			if (car.getSteeringLevel() < 0.1 && car.getSteeringLevel() > -0.1)
 			{
 				car.setSteeringLevel(0.0);
 			}
-			car.setTime(car.getTime() + elapsedTime);
-			car.setPosX(car.getPosX() + deltaX);
-			car.setPosY(car.getPosY() + deltaY);
+			car.setTime(car.getTime().add(elapsedTime));
+			car.setPosX(car.getPosX() + deltaX.value());
+			car.setPosY(car.getPosY() + deltaY.value());
 			car.setCurrentDirection(courseAngle);
 			car.setSpeed(carSpeed);
 		}
@@ -229,21 +201,22 @@ public enum CarState
 		{
 			if (car.getProplevel() > 0.1)
 			{
-				car.setSpeed(0.1);
+				car.setSpeed(Factory.speedInMeterProSeKunde(0.1));
 				car.setState(DRIVINGFORWARD);
 			}
 			else
 			{
-				car.setSpeed(0.0);
+				car.setSpeed(Factory.speedInMeterProSeKunde(0.0));
 				car.setState(STOPPED);
 			}
 		}
 
 		@Override
-		public void step(double elapsedTime, Car car)
+		public void step(TimeDiff elapsedTime, Car car)
 		{
-			car.setTime(car.getTime() + elapsedTime);
+			car.setTime(car.getTime().add(elapsedTime));
 		}
+
 	},
 	SLIDING
 	{
@@ -251,7 +224,7 @@ public enum CarState
 		@Override
 		public void switchState(Car car)
 		{
-			if (car.getSpeed() <= Konstants.ZERO)
+			if (car.getSpeed().value() <= Konstants.ZERO)
 			{
 				car.setState(STOPPED);
 			}
@@ -262,51 +235,47 @@ public enum CarState
 		}
 
 		@Override
-		public void step(double elapsedTime, Car car)
+		public void step(TimeDiff elapsedTime, Car car)
 		{
 			System.out.println("STATE: '''''''''''''''''''''''''" + car.getState());
 			// Antriebskraft
-			double forcePropMax =  calculateForcePropMax(car);
-
+			Force forcePropMax =  calculateForcePropMax(car);
 			// Bremskraft
-			double forceBrakeMax = (car.getMass() * Konstants.ACCEARTH * -2) * car.getTraktion().getValue();
+			Force forceBrakeMax = calculateForceBrakeMax(car);
 
 			// Kraft
-
 			// Widerstandskraft
-			double forceDrag = car.getdragConst() * (Math.pow(car.getSpeed(), 2)) * Math.signum(-car.getSpeed()); // Newton
-			// [kg*m/s**2]
+			Force forceDrag = calculateForceDrag(car); 
+			
 			// Gesamtkraft die in dem Moment wirkt
-			double force = forcePropMax + forceDrag + forceBrakeMax; // Newton[kg*m/s**2]
-
-			// Kurvenradius
+			Force force = calculateForce(forcePropMax, forceDrag, forceBrakeMax); // Newton[kg*m/s**2]
 
 			// Beschleunigung
-			double acc = force / car.getMass();
-			// Maximale Beschleunigung
+			
+			Acc acc = calculateAcc(car, force);
 
 			// Kinematik
 
 			// Aktuelle Geschwindigkeit nach Beschleunigung
-			double carSpeed = car.getSpeed() + (acc * elapsedTime);
+			Speed carSpeed = car.getSpeed().add((acc.mul(elapsedTime)));
 
 			double degree = car.getCurrentDirection();
-			double deltaPos = carSpeed * elapsedTime;
+			Length deltaPos = carSpeed.mul(elapsedTime);
 
 			double courseAngle = degree;
 
-			if (carSpeed > -0.2 && carSpeed < 0.2)
+			if (carSpeed.value() > -0.2 && carSpeed.value() < 0.2)
 			{
-				carSpeed = Konstants.ZERO;
+				carSpeed = Factory.speedInMeterProSeKunde(Konstants.ZERO);
 			}
 
-			double deltaX = (deltaPos) * Math.cos(courseAngle);
-			double deltaY = (deltaPos) * Math.sin(courseAngle);
+			Length deltaX = deltaPos.mul( Math.cos(courseAngle));
+			Length deltaY = deltaPos.mul(Math.sin(courseAngle));
 
 			car.setSteeringLevel(0.0);
-			car.setTime(car.getTime() + elapsedTime);
-			car.setPosX(car.getPosX() + deltaX);
-			car.setPosY(car.getPosY() + deltaY);
+			car.setTime(car.getTime().add( elapsedTime));
+			car.setPosX(car.getPosX() + deltaX.value());
+			car.setPosY(car.getPosY() + deltaY.value());
 			car.setCurrentDirection(courseAngle);
 			car.setSpeed(carSpeed);
 		}
@@ -314,11 +283,45 @@ public enum CarState
 
 	
 
-	protected double calculateForcePropMax(Car car)
+	protected Force calculateForcePropMax(Car car)
 	{
-		return car.getMass() * (Konstants.ACCEARTH) * car.getTraktion().getValue(); // Newton[kg*m/s**2]
+		return car.getMass().mul(Konstants.ACCEARTH).mul(car.getTraktion().getValue()); // Newton[kg*m/s**2]
+	}
+	
+	protected Acc calculateAcc(Car car, Force force) {
+		return force.div(car.getMass());
+	}
+
+	protected Force calculateForce(Force forceProp, Force forceDrag, Force forceBrakeMax) {	
+		return forceProp.add(forceDrag).add(forceBrakeMax); 
+	}
+
+	protected void checkAbs(Car car, Force forceBrakeMax, Force forcePropMax) {
+		if (car.isABSActive())
+		{
+			if (forceBrakeMax.value() > forcePropMax.value())
+			{
+				forceBrakeMax = forcePropMax;
+			}
+		}
+		else
+		{
+			if (Math.abs(forceBrakeMax.value()) > forcePropMax.value())
+			{
+				System.out.println("ABS Sliding ******************************");
+				car.setState(SLIDING);
+			}
+		}
+	}
+
+	protected Force calculateForceDrag(Car car) {
+		return car.getdragConst().mul(car.getSpeed().mul(car.getSpeed())).mul(Factory.speedInMeterProSeKunde(-(car.getSpeed().signum()).value())); // Newton[kg*m/s**2]
+	}
+
+	protected Force calculateForceBrakeMax(Car car){
+		return (car.getMass().mul(Konstants.ACCEARTH).mul(-2)).mul(car.getTraktion().getValue()).mul(car.getBrakelevel());
 	}
 	
 	public abstract void switchState(Car car);
-	public abstract void step(double elapsedTime, Car car);
+	public abstract void step(TimeDiff elapsedTime, Car car);
 }

@@ -1,5 +1,7 @@
 package haw.pr2.jgame;
 
+import haw.pr2.jgame.interfaces.TimeDiff;
+
 import java.awt.event.KeyEvent;
 
 import jgame.JGObject;
@@ -36,7 +38,7 @@ public class Player extends JGObject
 	 * updates the Player
 	 * @param elapsedTime
 	 */
-	public void move(double elapsedTime)
+	public void move(TimeDiff elapsedTime)
 	{
 		car.setTraktion(checktraktion());
 
@@ -63,6 +65,7 @@ public class Player extends JGObject
 		System.out.println("Lenkrad .......: " + steeringLevel);
 		System.out.println("POSX:----------- " + car.getPosX());
 		System.out.println("POSY: ~~~~~~~~~~~" + car.getPosY());
+		System.out.println("SPEED: ******************************************************************" + car.getSpeed().value());
 
 	}
 

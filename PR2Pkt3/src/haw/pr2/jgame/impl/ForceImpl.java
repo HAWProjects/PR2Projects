@@ -48,13 +48,20 @@ public class ForceImpl extends AbstractValuesImpl<Force> implements Force
 
 	@Override
 	public Acc div(Mass mass)
-	{
-		return AccImpl.valueOf(Factory.forceInNewton(this.value()).value() / Factory.massInKilogramm(mass.value()).value());
+	{	
+		return Factory.accInMeterProSeKundeQuadrat(Factory.forceInNewton(this.value()).value() / Factory.massInKilogramm(mass.value()).value());
+//		return AccImpl.valueOf(Factory.forceInNewton(this.value()).value() / Factory.massInKilogramm(mass.value()).value());
 	}
 
 	@Override
 	public Mass div(Acc acc)
 	{
-		return MassImpl.valueOf(Factory.forceInNewton(this.value()).value() / Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
+		return Factory.massInKilogramm(Factory.forceInNewton(this.value()).value() / Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
+//		return MassImpl.valueOf(Factory.forceInNewton(this.value()).value() / Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
+	}
+
+	@Override
+	public Force mul(Speed speed) {
+		return Factory.forceInNewton(Factory.forceInNewton(this.value()).value() * Factory.speedInMeterProSeKunde(speed.value()).value());
 	}
 }

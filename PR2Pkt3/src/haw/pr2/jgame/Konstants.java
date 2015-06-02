@@ -1,9 +1,10 @@
 package haw.pr2.jgame;
+import haw.pr2.jgame.interfaces.*;
 
 public class Konstants
 {
     
-	public static final double ACCEARTH = 9.81; // Erdanziehung [m/s**-2]
+	public static final Acc ACCEARTH = Factory.accInMeterProSeKundeQuadrat(9.81); // Erdanziehung [m/s**-2]
 	public static final double SECONDSINHOUR = 3600.0; // Zeit [s]
 	public static final double KILOMETERINMETERS = 1000.0; // Länge [m]
 	public static final double KILOWATTINWATT = 1000.0; // Leistung [W]

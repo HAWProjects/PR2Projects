@@ -41,13 +41,15 @@ public class TimeDiffImpl extends AbstractValuesImpl<TimeDiff> implements TimeDi
 
 	@Override
 	public Length mul(Speed speed) {
-		return LengthImpl.valueOf(Factory.timeInSec(this.value()).value() * speed.value());
+		return Factory.lengthInMeter(Factory.timeInSec(this.value()).value() * Factory.speedInMeterProSeKunde(speed.value()).value());
+//		return LengthImpl.valueOf(Factory.timeInSec(this.value()).value() * speed.value());
 	}
 
 
 	@Override
 	public Speed mul(Acc acc) {
-		return SpeedImpl.valueOf(Factory.timeInSec(this.value()).value() * acc.value());
+		return Factory.speedInMeterProSeKunde(Factory.timeInSec(this.value()).value() * Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
+//		return SpeedImpl.valueOf(Factory.timeInSec(this.value()).value() * acc.value());
 	}
 
 }

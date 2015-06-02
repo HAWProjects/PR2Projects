@@ -1,17 +1,19 @@
 package haw.pr2.jgame;
 
+import haw.pr2.jgame.interfaces.*;
+
 /**
  * @author abt434
  *
  */
 
 public abstract class Car {
-	private double _speed; // Geschwindigkeit [ms^-1]
+	private Speed _speed; // Geschwindigkeit [ms^-1]
 	private double _posX; // XPosition des Autos [m]
 	private double _posY; // YPosition des Autos [m]
 	private double _proplevel; // Gaspedalstellung
 	private double _brakelevel;
-	private double _time; // Zeit [s]
+	private TimeDiff _time; // Zeit [s]
 	private double _steeringLevel; // Lenkeinschlag zwischen -1 und 1
 	private double _currentDirection; // >=0 &&  < 360 Grad
 	
@@ -23,10 +25,10 @@ public abstract class Car {
 	private Traktion _traktion;
 
 	public Car() {
-		this(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+		this(Factory.timeInSec(0.0), 0.0, 0.0, Factory.speedInMeterProSeKunde(0.0), 0.0, 0.0, 0.0);
 	}
 
-	public Car(double time, double posX, double posY, double speed, double proplevel, double brakelevel, double steeringLevel) {
+	public Car(TimeDiff time, double posX, double posY, Speed speed, double proplevel, double brakelevel, double steeringLevel) {
 		_time = time;
 		_posX = posX;
 		_posY = posY;
@@ -42,11 +44,11 @@ public abstract class Car {
 	}
 
 	/*************************************************** only getter & setter ***********************************************************/
-	public double getSpeed() {
+	public Speed getSpeed() {
 		return _speed;
 	}
 
-	public void setSpeed(double speed) {
+	public void setSpeed(Speed speed) {
 		_speed = speed;
 	}
 
@@ -82,11 +84,11 @@ public abstract class Car {
 		_brakelevel = brakelevel;
 	}
 
-	public double getTime() {
+	public TimeDiff getTime() {
 		return _time;
 	}
 
-	public void setTime(double time) {
+	public void setTime(TimeDiff time) {
 		_time = time;
 	}
 
@@ -141,7 +143,7 @@ public abstract class Car {
 	 * @param aDeltaTime
 	 *            : the time which is elapsed
 	 */
-	public void update(double aDeltaTime) {
+	public void update(TimeDiff aDeltaTime) {
 		getState().switchState(this);
 		getState().step(aDeltaTime, this);
 	}
@@ -152,30 +154,30 @@ public abstract class Car {
 	 * 
 	 * @return
 	 */
-	abstract double getMass();
+	abstract Mass getMass();
 
 	/**
 	 * Liefert die Leistung des Autos
 	 * 
 	 * @return
 	 */
-	abstract double getPowerPropMax();
+	abstract Power getPowerPropMax();
 
 	/**
 	 * liefert die Hoechstgeschwindigkeit des Autos
 	 * 
 	 * @return
 	 */
-	abstract double getSpeedMax();
+	abstract Speed getSpeedMax();
 
 	/**
 	 * @return
 	 */
-	abstract double getdragConst();
+	abstract Force getdragConst();
 
 	/**
 	 * @return
 	 */
-	abstract double getCurveRadius();
+	abstract Length getCurveRadius();
 
 }

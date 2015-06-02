@@ -1,6 +1,7 @@
 
 package haw.pr2.jgame;
 
+import haw.pr2.jgame.interfaces.TimeDiff;
 import jgame.platform.JGEngine;
 
 
@@ -46,13 +47,13 @@ public class Lever {
         return level;
     }
 
-    public double update(double elapsedTime){
+    public double update(TimeDiff elapsedTime){
         if (keyUp > 0 && engine.getKey(keyUp)){
-            setLevel(getLevel() + ((Math.abs(max)/timeToMax) * elapsedTime) );
+            setLevel(getLevel() + ((Math.abs(max)/timeToMax) * elapsedTime.value()) );
         }else if(keyDown > 0 && engine.getKey(keyDown)){
-            setLevel(getLevel() - ((Math.abs(max)/timeToMax) * elapsedTime) );
+            setLevel(getLevel() - ((Math.abs(max)/timeToMax) * elapsedTime.value()) );
         }else if(autoZero){
-            setLevel(getLevel() + Math.signum(-getLevel()) * ((Math.abs(max)/timeToMax) * elapsedTime) );
+            setLevel(getLevel() + Math.signum(-getLevel()) * ((Math.abs(max)/timeToMax) * elapsedTime.value()) );
         }
         return level;
     }

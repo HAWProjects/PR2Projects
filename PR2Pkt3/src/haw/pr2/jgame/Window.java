@@ -1,4 +1,5 @@
 package haw.pr2.jgame;
+import haw.pr2.jgame.interfaces.*;
 
 
 
@@ -25,7 +26,7 @@ public class Window extends JGEngine {
 		timer = Timer.valueOf();
 
 		initEngine(width, height);
-		player = Player.valueOf(this, new Porsche911GT2RS(0.0,this.getWidth()/2,this.getHeight()/2,0.0,0.0, 0.0, true,true));
+		player = Player.valueOf(this, new Porsche911GT2RS(Factory.timeInSec(0.0),this.getWidth()/2,this.getHeight()/2,Factory.speedInMeterProSeKunde(0.0), 0.0, 0.0, true,true));
 		
 		eis = Switch.valueOf(this, KeyEvent.VK_1);
 		schnee = Switch.valueOf(this, KeyEvent.VK_2);	
@@ -55,7 +56,7 @@ public class Window extends JGEngine {
 	 */
 	@Override
 	public void doFrame() {
-		double elapsedTime = timer.update();
+		TimeDiff elapsedTime = timer.update();
 		player.move(elapsedTime);
 	}
 	
@@ -66,7 +67,7 @@ public class Window extends JGEngine {
 	public void paintFrame() {
             drawString("Abs: "+player.isAbsOn(), viewWidth() - 50, viewHeight() - 30, 0, new JGFont("Arial",1,11), new JGColor(20, 20, 20));
             drawString("Asr: "+player.isASROn(), viewWidth() - 50, viewHeight() - 50, 0);
-            drawString("Speed: "+ (int)(player.getCar().getSpeed() * 3.6), viewWidth() - 50, viewHeight() - 70, 0);
+            drawString("Speed: "+ (int)(player.getCar().getSpeed().value() * 3.6), viewWidth() - 50, viewHeight() - 70, 0);
             drawString("Traktion: " + player.getCar().getTraktion().toString(), viewWidth() - 50, viewHeight(), 0);
           
             if(player.getCar().getState() == CarState.SLIDING){

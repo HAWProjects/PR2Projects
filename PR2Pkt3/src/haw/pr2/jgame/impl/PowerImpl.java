@@ -39,7 +39,13 @@ public class PowerImpl extends AbstractValuesImpl<Power> implements Power {
 	@Override
 	public Speed div(Force force)
 	{
-		return SpeedImpl.valueOf(Factory.powerInWatt(this.value).value() / force.value());
+		return Factory.speedInMeterProSeKunde(Factory.powerInWatt(this.value()).value() / Factory.forceInNewton(force.value()).value());
+//		return SpeedImpl.valueOf(Factory.powerInWatt(this.value).value() / force.value());
 	}
+	@Override
+	public Force div(Speed speed) {
+		return Factory.forceInNewton(Factory.powerInWatt(this.value()).value() / Factory.speedInMeterProSeKunde(speed.value()).value());
+	}
+	
 
 }

@@ -1,6 +1,6 @@
 package haw.pr2.jgame.impl;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+//import static com.google.common.base.Preconditions.checkNotNull;
 import haw.pr2.jgame.Factory;
 import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Length;
@@ -28,7 +28,7 @@ public static WorkImpl valueOf(double inValue){
 	
 	@Override
 	public Work div(double other) {
-		checkNotNull(other > 0);
+//		checkNotNull(other > 0);
 		return fromPrototype(Factory.workInNewtonMeter(this.value()).value() / other);
 	}
 
@@ -39,13 +39,13 @@ public static WorkImpl valueOf(double inValue){
 	@Override
 	public Length div(Force force)
 	{
-		return Factory.lengthInMeter(this.value() / force.value());
+		return Factory.lengthInMeter(Factory.workInNewtonMeter(this.value()).value() / Factory.forceInNewton(force.value()).value());
 	}
 
 	@Override
 	public Force div(Length length)
 	{
-		return ForceImpl.valueOf(Factory.workInNewtonMeter(this.value()).value() / length.value());
+		return Factory.forceInNewton(Factory.workInNewtonMeter(this.value()).value() / Factory.lengthInMeter(length.value()).value());
 	}
 	
 

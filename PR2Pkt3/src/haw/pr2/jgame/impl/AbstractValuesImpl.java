@@ -19,13 +19,13 @@ public abstract class AbstractValuesImpl<E extends AbstractValue> implements Abs
 	    }
 	    
 	    @Override
-	    public E abs(E other) {
-	        return fromPrototype(Math.abs(other.value()));
+	    public E abs() {
+	        return fromPrototype(Math.abs(this.value()));
 	    }
 	    
 	    @Override
-	    public E signum(E other) {
-	        return fromPrototype(Math.signum(other.value()));
+	    public E signum() {
+	        return fromPrototype(Math.signum(this.value()));
 	    }
 
 	    @Override

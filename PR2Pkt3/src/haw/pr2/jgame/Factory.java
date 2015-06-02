@@ -91,8 +91,8 @@ public class Factory {
     	return power(watt, PowerUnit.WATT, Multiplier.NONE);
     }
     
-    public static Power powerInKiloWatt(double watt) {
-    	return power(watt, PowerUnit.WATT, Multiplier.KILO);
+    public static Power powerKilowattInWatt(double kiloWatt) {
+    	return power(kiloWatt, PowerUnit.WATT, Multiplier.KILO);
     }
     
     public static Power power(double value, PowerUnit unit, Multiplier multiplier){

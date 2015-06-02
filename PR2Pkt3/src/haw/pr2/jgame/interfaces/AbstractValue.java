@@ -7,8 +7,8 @@ public interface AbstractValue <E extends AbstractValue> extends Comparable<E> {
     public E div(double other);
     public E mul(double other);
     
-    public E abs(E other);
-    public E signum(E other);
+    public E abs();
+    public E signum();
     
     public E fromPrototype(double value);
     
