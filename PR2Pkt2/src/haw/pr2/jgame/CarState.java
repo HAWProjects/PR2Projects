@@ -31,6 +31,9 @@ public enum CarState
 			// aktuelle Leistung Auto
 			double powerProp = car.getPowerPropMax() * proplevel; // Newton
 																	// [kg*m/s**2]
+			System.out.println("Force: ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''***********" + powerProp);
+			
+		
 			// Antriebskraft
 			double forcePropMax = calculateForcePropMax(car); 
 
@@ -39,10 +42,13 @@ public enum CarState
 
 			// Kraft
 			double forcePropAbs = powerProp / car.getSpeed();
+			System.out.println("Force: ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''***********" + forcePropAbs);
 			if (car.isASRActive())
 			{
 				forcePropAbs = Math.min(forcePropMax, (powerProp / car.getSpeed()));
 			}
+			System.out.println("Force: ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''***********" + forcePropAbs);
+		
 
 			// Abs
 			if (car.isABSActive())
@@ -71,12 +77,15 @@ public enum CarState
 			// Kurvenradius
 
 			// Beschleunigung
+			
 			double acc = force / car.getMass();
+			
 
 			// Kinematik
 
 			// Aktuelle Geschwindigkeit nach Beschleunigung
 			double carSpeed = car.getSpeed() + (acc * elapsedTime);
+			System.out.println("SPEED: ******************************************************************" + carSpeed);
 			double courseAngle = car.getCurrentDirection();
 
 			if (carSpeed > -0.2 && carSpeed < 0.2 && proplevel < 0.1)
@@ -96,6 +105,7 @@ public enum CarState
 			car.setPosY(car.getPosY() + deltaY);
 			car.setCurrentDirection(courseAngle);
 			car.setSpeed(carSpeed);
+			
 		}
 	},
 
