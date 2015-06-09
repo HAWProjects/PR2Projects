@@ -22,6 +22,10 @@ public class Factory {
 	private Factory(){}
 	
 	/*****************************Acc*************************/
+	public static Acc acc(double value) {
+		return AccImpl.valueOf(value);
+	}
+	
 	public static Acc acc(double value, AccUnit unit, Multiplier multiplier) {
 		return AccImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
 	}
@@ -29,6 +33,7 @@ public class Factory {
 	public static Acc accInMeterProSeKundeQuadrat(double meterProSecQuadrat) {
 		return acc(meterProSecQuadrat, AccUnit.METERINSECQUADRAT, Multiplier.NONE);
 	}
+	
 	
 	/******************************Length*********************/
     public static Length lengthInMeter(double meter) {
@@ -48,10 +53,7 @@ public class Factory {
         }
         
     public static Length length(double value) {
-            return LengthImpl.valueOf(value);
-            
-        
-        
+            return LengthImpl.valueOf(value);     
     }
     
     /******************************Mass**********************/
@@ -65,6 +67,10 @@ public class Factory {
     
     public static Mass mass(double value, MassUnit unit, Multiplier multiplier){
     	return MassImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
+    }
+    
+    public static Mass mass(double value){
+    	return MassImpl.valueOf(value);
     }
     
     
@@ -85,6 +91,10 @@ public class Factory {
     	return TimeDiffImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
     }
     
+    public static TimeDiff time(double value){
+    	return TimeDiffImpl.valueOf(value);
+    }
+    
     /******************************Power*********************/
     public static Power powerInWatt(double watt) {
     	return power(watt, PowerUnit.WATT, Multiplier.NONE);
@@ -96,6 +106,10 @@ public class Factory {
     
     public static Power power(double value, PowerUnit unit, Multiplier multiplier){
     	return PowerImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
+    }
+    
+    public static Power power(double value){
+    	return PowerImpl.valueOf(value);
     }
     
     /******************************Speed*********************/
@@ -111,6 +125,10 @@ public class Factory {
     	return SpeedImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
     }
     
+    public static Speed speed(double value){
+    	return SpeedImpl.valueOf(value);
+    }
+    
     
     /******************************Work*********************/
     
@@ -122,6 +140,10 @@ public class Factory {
     	return WorkImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
     }
     
+    public static Work work(double value){
+    	return WorkImpl.valueOf(value);
+    }
+    
     /*****************************Force*********************/
     
     public static Force forceInNewton(double force) {
@@ -130,5 +152,9 @@ public class Factory {
     
     public static Force force(double value, ForceUnit unit, Multiplier multiplier){
     	return ForceImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
+    }
+    
+    public static Force force(double value){
+    	return ForceImpl.valueOf(value);
     }
 }

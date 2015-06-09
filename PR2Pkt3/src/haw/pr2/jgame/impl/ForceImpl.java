@@ -5,8 +5,10 @@ import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Length;
 import haw.pr2.jgame.interfaces.Mass;
 import haw.pr2.jgame.interfaces.Speed;
+import haw.pr2.jgame.units.ForceUnit;
+import haw.pr2.jgame.units.Multiplier;
 
-public class ForceImpl extends AbstractValuesImpl<Force> implements Force
+class ForceImpl extends AbstractValuesImpl<Force> implements Force
 {
 
 	public static Force valueOf(double inValue)
@@ -62,5 +64,11 @@ public class ForceImpl extends AbstractValuesImpl<Force> implements Force
 	@Override
 	public Force mul(Speed speed) {
 		return Factory.forceInNewton(Factory.forceInNewton(this.value()).value() * Factory.speedInMeterProSeKunde(speed.value()).value());
+	}
+
+	@Override
+	public Force value(ForceUnit funit, Multiplier mult)
+	{
+		return Factory.force(value, funit, mult);
 	}
 }

@@ -6,6 +6,8 @@ import haw.pr2.jgame.interfaces.Length;
 import haw.pr2.jgame.interfaces.Mass;
 import haw.pr2.jgame.interfaces.Speed;
 import haw.pr2.jgame.interfaces.TimeDiff;
+import haw.pr2.jgame.units.AccUnit;
+import haw.pr2.jgame.units.Multiplier;
 
 class AccImpl extends AbstractValuesImpl<Acc> implements Acc {
 
@@ -46,5 +48,11 @@ class AccImpl extends AbstractValuesImpl<Acc> implements Acc {
 	@Override
 	public Speed mul(TimeDiff timeDiff) {
 		return Factory.speedInMeterProSeKunde(Factory.accInMeterProSeKundeQuadrat(this.value).value() * Factory.timeInSec(timeDiff.value()).value());
+	}
+
+	@Override
+	public Acc value(AccUnit aunit, Multiplier mult)
+	{
+		return Factory.acc(this.value(), aunit, mult);
 	}
 }
