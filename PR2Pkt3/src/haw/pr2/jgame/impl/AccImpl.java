@@ -1,6 +1,5 @@
 package haw.pr2.jgame.impl;
 
-import haw.pr2.jgame.Factory;
 import haw.pr2.jgame.interfaces.Acc;
 import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Length;
@@ -8,7 +7,7 @@ import haw.pr2.jgame.interfaces.Mass;
 import haw.pr2.jgame.interfaces.Speed;
 import haw.pr2.jgame.interfaces.TimeDiff;
 
-public class AccImpl extends AbstractValuesImpl<Acc> implements Acc {
+class AccImpl extends AbstractValuesImpl<Acc> implements Acc {
 
 	private AccImpl(double value) {
 		super(value);

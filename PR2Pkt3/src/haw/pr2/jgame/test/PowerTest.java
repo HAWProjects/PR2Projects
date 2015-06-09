@@ -1,9 +1,8 @@
 package haw.pr2.jgame.test;
 
 import static org.junit.Assert.*;
-import haw.pr2.jgame.Factory;
+import haw.pr2.jgame.impl.Factory;
 import haw.pr2.jgame.interfaces.*;
-
 
 import org.junit.BeforeClass;
 import org.junit.Test;

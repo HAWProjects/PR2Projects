@@ -1,13 +1,5 @@
-package haw.pr2.jgame;
+package haw.pr2.jgame.impl;
 
-import haw.pr2.jgame.impl.AccImpl;
-import haw.pr2.jgame.impl.ForceImpl;
-import haw.pr2.jgame.impl.LengthImpl;
-import haw.pr2.jgame.impl.MassImpl;
-import haw.pr2.jgame.impl.PowerImpl;
-import haw.pr2.jgame.impl.SpeedImpl;
-import haw.pr2.jgame.impl.TimeDiffImpl;
-import haw.pr2.jgame.impl.WorkImpl;
 import haw.pr2.jgame.interfaces.Acc;
 import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Length;
@@ -53,6 +45,13 @@ public class Factory {
 
     public static Length length(double value, LengthUnit unit, Multiplier multiplier) {
         return LengthImpl.valueOf(value * unit.getFactor() * multiplier.getMultiplier());
+        }
+        
+    public static Length length(double value) {
+            return LengthImpl.valueOf(value);
+            
+        
+        
     }
     
     /******************************Mass**********************/

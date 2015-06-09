@@ -1,6 +1,5 @@
 package haw.pr2.jgame.impl;
 
-import haw.pr2.jgame.Factory;
 import haw.pr2.jgame.interfaces.Acc;
 import haw.pr2.jgame.interfaces.Length;
 import haw.pr2.jgame.interfaces.Speed;

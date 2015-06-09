@@ -1,7 +1,6 @@
 package haw.pr2.jgame.impl;
 
 //import static com.google.common.base.Preconditions.checkNotNull;
-import haw.pr2.jgame.Factory;
 import haw.pr2.jgame.interfaces.Acc;
 import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Length;
@@ -50,6 +49,9 @@ public class SpeedImpl extends AbstractValuesImpl<Speed> implements Speed {
 		return Factory.lengthInMeter(Factory.speedInMeterProSeKunde(this.value()).value() * Factory.timeInSec(timeDiff.value()).value());
 //		return LengthImpl.valueOf(Factory.speedInMeterProSeKunde(this.value()).value() * timeDiff.value());
 	}
+	
+//	public Length mul(TimeDiff timeDiff) { return Factory.length(this.value() * timeDiff.value()); 
+	
 
 	@Override
 	public Force dragForce(Speed maxSpeed, Power maxPower)

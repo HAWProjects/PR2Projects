@@ -1,7 +1,6 @@
 package haw.pr2.jgame.impl;
 
 //import static com.google.common.base.Preconditions.checkNotNull;
-import haw.pr2.jgame.Factory;
 import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Length;
 import haw.pr2.jgame.interfaces.Work;

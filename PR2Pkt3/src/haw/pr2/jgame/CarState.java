@@ -1,4 +1,5 @@
 package haw.pr2.jgame;
+import haw.pr2.jgame.impl.Factory;
 import haw.pr2.jgame.interfaces.*;
 
 public enum CarState
