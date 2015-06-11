@@ -1,5 +1,7 @@
 package haw.pr2.jgame;
 
+import java.awt.event.KeyEvent;
+
 /**
  * @author abt434
  *
@@ -14,10 +16,12 @@ public abstract class Car {
 	private double _time; // Zeit [s]
 	private double _steeringLevel; // Lenkeinschlag zwischen -1 und 1
 	private double _currentDirection; // >=0 &&  < 360 Grad
+	private Player player;
+
 	
-	private boolean _asr;
-	
-	private boolean _abs;
+
+
+
 
 	private CarState _state;
 	private Traktion _traktion;
@@ -37,8 +41,8 @@ public abstract class Car {
 		_proplevel = proplevel;
 		_brakelevel = brakelevel;
 		_currentDirection = 0.0;
-		_abs = false;
-		_asr = false;
+
+
 	}
 
 	/*************************************************** only getter & setter ***********************************************************/
@@ -123,11 +127,19 @@ public abstract class Car {
 	}
 
 	public boolean isASRActive() {
-		return false;
+		return player.isASROn();
 	}
 	
 	public boolean isABSActive(){
-		return false;
+		return player.isAbsOn();
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 	/**

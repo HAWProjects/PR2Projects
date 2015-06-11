@@ -27,7 +27,7 @@ public enum CarState {
 			// Bremskraft
 			double forceBrakeMax = (car.getMass() * Konstants.ACCEARTH * -2) * car.getTraktion().getValue();
 			double forceBrake = forceBrakeMax * car.getBrakelevel();
-
+			
 			// Beschleunigung
 			double acc = forcePropMax / car.getMass();
 			// Bremsbeschleunigung
@@ -41,7 +41,9 @@ public enum CarState {
 			} else {
 
 				forcePropAbs = powerProp / car.getSpeed();
-
+			
+				System.err.println("abs**********************************" + forcePropAbs);
+				System.err.println("max**********************************" + forcePropMax);
 				if (forcePropAbs > forcePropMax) {
 					car.setState(SLIDING);
 				}
@@ -157,14 +159,14 @@ public enum CarState {
 			double acc = force / car.getMass();
 		
 			// Maximale Beschleunigung
-			double maxAcc = Konstants.ACCEARTH * car.getTraktion().getValue(); // 1
-																				// =
-																				// tractCoeff
+			double maxAcc = Konstants.ACCEARTH * car.getTraktion().getValue(); // 1 = tractCoeff
 
 			double curveAcc = (car.getSpeed() * car.getSpeed()) / Math.abs(curveRadius);
-			if (Math.abs(acc + curveAcc) > maxAcc) {
-				car.setState(SLIDING);
-			}
+//			if (Math.abs(acc + curveAcc) > maxAcc) {
+//				car.setState(SLIDING);
+//			}
+			
+			
 			// Kinematik
 
 			// Aktuelle Geschwindigkeit nach Beschleunigung
