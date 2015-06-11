@@ -142,8 +142,9 @@ public abstract class Car {
 	 *            : the time which is elapsed
 	 */
 	public void update(double aDeltaTime) {
-		getState().switchState(this);
 		getState().step(aDeltaTime, this);
+		getState().switchState(this);
+		System.out.println("''''''''''''''''''''''''''''''''''''''' " + this.getState());
 	}
 
 	/****************************************************** abstract Methods *******************************************************/
