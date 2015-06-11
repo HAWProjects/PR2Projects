@@ -3,8 +3,10 @@ package haw.pr2.jgame.impl;
 import haw.pr2.jgame.interfaces.Acc;
 import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Mass;
+import haw.pr2.jgame.units.MassUnit;
+import haw.pr2.jgame.units.Multiplier;
 
-public class MassImpl extends AbstractValuesImpl<Mass> implements Mass{
+class MassImpl extends AbstractValuesImpl<Mass> implements Mass{
 	  
 	public static Mass valueOf(double inValue) {
 	        return new MassImpl(inValue);
@@ -38,6 +40,12 @@ public class MassImpl extends AbstractValuesImpl<Mass> implements Mass{
 	public Force mul(Acc acc) {
 		return Factory.forceInNewton(Factory.massInKilogramm(this.value()).value() * Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
 //		return ForceImpl.valueOf(Factory.massInKilogramm(this.value()).value() * Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
+	}
+
+	@Override
+	public Mass value(MassUnit munit, Multiplier mult)
+	{
+		return Factory.mass(value, munit, mult);
 	}
 
 }

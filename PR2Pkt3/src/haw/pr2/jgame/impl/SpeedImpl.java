@@ -7,8 +7,11 @@ import haw.pr2.jgame.interfaces.Length;
 import haw.pr2.jgame.interfaces.Power;
 import haw.pr2.jgame.interfaces.Speed;
 import haw.pr2.jgame.interfaces.TimeDiff;
+import haw.pr2.jgame.units.LengthUnit;
+import haw.pr2.jgame.units.Multiplier;
+import haw.pr2.jgame.units.SpeedUnit;
 
-public class SpeedImpl extends AbstractValuesImpl<Speed> implements Speed {
+class SpeedImpl extends AbstractValuesImpl<Speed> implements Speed {
 	
 	  public static Speed valueOf(double inValue) {
 	        return new SpeedImpl(inValue);
@@ -44,13 +47,13 @@ public class SpeedImpl extends AbstractValuesImpl<Speed> implements Speed {
 		return fromPrototype(Factory.speedInMeterProSeKunde(this.value()).value() * Factory.speedInMeterProSeKunde(other.value()).value());
 	}
 
-	@Override
-	public Length mul(TimeDiff timeDiff) {
-		return Factory.lengthInMeter(Factory.speedInMeterProSeKunde(this.value()).value() * Factory.timeInSec(timeDiff.value()).value());
-//		return LengthImpl.valueOf(Factory.speedInMeterProSeKunde(this.value()).value() * timeDiff.value());
-	}
+//	@Override
+//	public Length mul(TimeDiff timeDiff) {
+//		return Factory.lengthInMeter(Factory.speedInMeterProSeKunde(this.value()).value() * Factory.timeInSec(timeDiff.value()).value());
+////		return LengthImpl.valueOf(Factory.speedInMeterProSeKunde(this.value()).value() * timeDiff.value());
+//	}
 	
-//	public Length mul(TimeDiff timeDiff) { return Factory.length(this.value() * timeDiff.value()); 
+	public Length mul(TimeDiff timeDiff) { return Factory.length(this.value() * timeDiff.value()); }
 	
 
 	@Override
@@ -64,6 +67,14 @@ public class SpeedImpl extends AbstractValuesImpl<Speed> implements Speed {
 	public Acc curveAcc(Length length) {
 		return Factory.accInMeterProSeKundeQuadrat((Factory.speedInMeterProSeKunde(this.value()).value() * Factory.speedInMeterProSeKunde(this.value()).value())/ Factory.lengthInMeter(length.value()).value());
 	}
+
+	@Override
+	public Speed value(LengthUnit lunit, Multiplier mult)
+	{
+		return Factory.speed(value, lunit, mult);
+	}
+
+	
 
 	
 }

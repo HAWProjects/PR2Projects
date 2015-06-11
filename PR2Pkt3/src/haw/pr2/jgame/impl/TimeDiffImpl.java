@@ -5,7 +5,7 @@ import haw.pr2.jgame.interfaces.Length;
 import haw.pr2.jgame.interfaces.Speed;
 import haw.pr2.jgame.interfaces.TimeDiff;
 
-public class TimeDiffImpl extends AbstractValuesImpl<TimeDiff> implements TimeDiff {
+class TimeDiffImpl extends AbstractValuesImpl<TimeDiff> implements TimeDiff {
 
 	   public static TimeDiff valueOf(double inValue) {
 	        return new TimeDiffImpl(inValue);

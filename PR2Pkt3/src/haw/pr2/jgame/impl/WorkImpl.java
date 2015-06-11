@@ -5,7 +5,7 @@ import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Length;
 import haw.pr2.jgame.interfaces.Work;
 
-public class WorkImpl extends AbstractValuesImpl<Work> implements Work {
+class WorkImpl extends AbstractValuesImpl<Work> implements Work {
 	
 public static WorkImpl valueOf(double inValue){
 	return new WorkImpl(inValue);

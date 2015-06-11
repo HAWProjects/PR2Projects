@@ -3,8 +3,10 @@ package haw.pr2.jgame.impl;
 import haw.pr2.jgame.interfaces.Force;
 import haw.pr2.jgame.interfaces.Power;
 import haw.pr2.jgame.interfaces.Speed;
+import haw.pr2.jgame.units.Multiplier;
+import haw.pr2.jgame.units.PowerUnit;
 
-public class PowerImpl extends AbstractValuesImpl<Power> implements Power {
+class PowerImpl extends AbstractValuesImpl<Power> implements Power {
 
 	public static Power valueOf(double inValue){
 		return new PowerImpl(inValue);
@@ -44,6 +46,11 @@ public class PowerImpl extends AbstractValuesImpl<Power> implements Power {
 	@Override
 	public Force div(Speed speed) {
 		return Factory.forceInNewton(Factory.powerInWatt(this.value()).value() / Factory.speedInMeterProSeKunde(speed.value()).value());
+	}
+	@Override
+	public Power value(PowerUnit punit, Multiplier mult)
+	{
+		return Factory.power(value, punit, mult);
 	}
 	
 

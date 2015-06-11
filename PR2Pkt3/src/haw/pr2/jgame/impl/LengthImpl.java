@@ -3,8 +3,10 @@ package haw.pr2.jgame.impl;
 import haw.pr2.jgame.interfaces.Length;
 import haw.pr2.jgame.interfaces.Speed;
 import haw.pr2.jgame.interfaces.TimeDiff;
+import haw.pr2.jgame.units.LengthUnit;
+import haw.pr2.jgame.units.Multiplier;
 
-public class LengthImpl extends AbstractValuesImpl<Length> implements Length {
+class LengthImpl extends AbstractValuesImpl<Length> implements Length {
 
    public static Length valueOf(double inValue) {
         return new LengthImpl(inValue);
@@ -45,5 +47,11 @@ public class LengthImpl extends AbstractValuesImpl<Length> implements Length {
 	public Speed div(TimeDiff timeDiff) {
 		return	Factory.speedInMeterProSeKunde(Factory.lengthInMeter(this.value()).value()  / Factory.timeInSec(timeDiff.value()).value());
 //		return SpeedImpl.valueOf(Factory.lengthInMeter(this.value()).value() / (timeDiff.value()));
+	}
+
+	@Override
+	public Length value(LengthUnit lunit, Multiplier mult)
+	{
+		return Factory.length(value, lunit, mult);
 	}
 }
