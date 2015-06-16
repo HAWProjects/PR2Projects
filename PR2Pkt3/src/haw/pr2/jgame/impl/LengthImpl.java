@@ -28,25 +28,27 @@ class LengthImpl extends AbstractValuesImpl<Length> implements Length {
 	
 	@Override
 	public Length div(double other) {
-		return fromPrototype(Factory.lengthInMeter(this.value()).value() / other);
+		return Factory.length(this.value() / other);
 	}
+	@Override
+	public Length div(Length length) {
+		return Factory.length(this.value() / length.value());
+	}
+	
 
 	@Override
 	public Length mul(double other) {
-		return fromPrototype(Factory.lengthInMeter(this.value()).value() * other);
+		return Factory.length(this.value() * other);
 	}
 
 	@Override
 	public TimeDiff div(Speed speed) {
-		
-		return Factory.timeInSec(Factory.lengthInMeter(this.value()).value() / Factory.speedInMeterProSeKunde(speed.value()).value());
-//		return TimeDiffImpl.valueOf(Factory.lengthInMeter(this.value()).value() / (speed.value()));
+		return Factory.time(this.value()/ speed.value());
 	}
 
 	@Override
 	public Speed div(TimeDiff timeDiff) {
-		return	Factory.speedInMeterProSeKunde(Factory.lengthInMeter(this.value()).value()  / Factory.timeInSec(timeDiff.value()).value());
-//		return SpeedImpl.valueOf(Factory.lengthInMeter(this.value()).value() / (timeDiff.value()));
+		return	Factory.speed(this.value() / timeDiff.value());
 	}
 
 	@Override

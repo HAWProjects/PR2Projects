@@ -58,8 +58,8 @@ public class Player extends JGObject
 
 		car.update(elapsedTime);
 
-		x = car.getPosX();
-		y = car.getPosY();
+		x = car.getPosX().value();
+		y = car.getPosY().value();
 
 		System.out.println("Proplevel " + car.getProplevel());
 		System.out.println("Lenkrad .......: " + steeringLevel);

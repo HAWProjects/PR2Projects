@@ -32,22 +32,22 @@ class AccImpl extends AbstractValuesImpl<Acc> implements Acc {
 	
 	@Override
 	public Acc div(double other) {
-		return fromPrototype(Factory.accInMeterProSeKundeQuadrat(this.value).value() / other);
+		return Factory.acc(this.value() / other);
 	}
 	
 	@Override
 	public Acc mul(double other) {
-		return fromPrototype(Factory.accInMeterProSeKundeQuadrat(this.value).value() * other);
+		return Factory.acc(this.value() * other);
 	}
 
 	@Override
 	public Force mul(Mass mass) {
-		return Factory.forceInNewton(Factory.accInMeterProSeKundeQuadrat(this.value()).value() * Factory.massInKilogramm(mass.value()).value());
+		return Factory.force(this.value() * mass.value());
 	}
 
 	@Override
 	public Speed mul(TimeDiff timeDiff) {
-		return Factory.speedInMeterProSeKunde(Factory.accInMeterProSeKundeQuadrat(this.value).value() * Factory.timeInSec(timeDiff.value()).value());
+		return Factory.speed(this.value() * timeDiff.value());
 	}
 
 	@Override

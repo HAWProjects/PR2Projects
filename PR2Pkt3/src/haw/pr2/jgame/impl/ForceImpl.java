@@ -31,39 +31,34 @@ class ForceImpl extends AbstractValuesImpl<Force> implements Force
 	{
 		return valueOf(value);
 	}
-	
-	
 
 	@Override
 	public Force div(double other)
 	{
-		return fromPrototype(Factory.forceInNewton(this.value()).value() / other);
+		return Factory.force(this.value() / other);
 	}
 
 	@Override
 	public Force mul(double other)
 	{
-		return fromPrototype(Factory.forceInNewton(this.value()).value() * other);
+		return Factory.force(this.value() * other);
 	}
-
 
 	@Override
 	public Acc div(Mass mass)
 	{	
-		return Factory.accInMeterProSeKundeQuadrat(Factory.forceInNewton(this.value()).value() / Factory.massInKilogramm(mass.value()).value());
-//		return AccImpl.valueOf(Factory.forceInNewton(this.value()).value() / Factory.massInKilogramm(mass.value()).value());
+		return Factory.acc(this.value() / mass.value());
 	}
 
 	@Override
 	public Mass div(Acc acc)
 	{
-		return Factory.massInKilogramm(Factory.forceInNewton(this.value()).value() / Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
-//		return MassImpl.valueOf(Factory.forceInNewton(this.value()).value() / Factory.accInMeterProSeKundeQuadrat(acc.value()).value());
+		return Factory.mass(this.value() / acc.value());
 	}
 
 	@Override
 	public Force mul(Speed speed) {
-		return Factory.forceInNewton(Factory.forceInNewton(this.value()).value() * Factory.speedInMeterProSeKunde(speed.value()).value());
+		return Factory.force(this.value() * speed.value());
 	}
 
 	@Override

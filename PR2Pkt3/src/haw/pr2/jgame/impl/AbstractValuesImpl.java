@@ -17,6 +17,15 @@ public abstract class AbstractValuesImpl<E extends AbstractValue> implements Abs
 	    public E sub(E other) {
 	        return fromPrototype(value() - other.value());
 	    }
+	    @Override
+	    public E add(double other) {
+	        return fromPrototype(value() + other);
+	    }
+	    
+	    @Override
+	    public E sub(double other) {
+	        return fromPrototype(value() - other);
+	    }
 	    
 	    @Override
 	    public E abs() {
@@ -26,6 +35,11 @@ public abstract class AbstractValuesImpl<E extends AbstractValue> implements Abs
 	    @Override
 	    public E signum() {
 	        return fromPrototype(Math.signum(this.value()));
+	    }
+	    
+	    @Override
+	    public E min(E e) {
+	    	return fromPrototype(Math.min(this.value, e.value()));
 	    }
 
 	    @Override
