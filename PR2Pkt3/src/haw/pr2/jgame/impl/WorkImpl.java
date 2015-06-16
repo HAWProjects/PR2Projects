@@ -28,25 +28,22 @@ public static WorkImpl valueOf(double inValue){
 	@Override
 	public Work div(double other) {
 //		checkNotNull(other > 0);
-		return fromPrototype(Factory.workInNewtonMeter(this.value()).value() / other);
+		return Factory.work(this.value() / other);
 	}
 
 	@Override
 	public Work mul(double other) {
-		return fromPrototype(Factory.workInNewtonMeter(this.value()).value() * other);
+		return Factory.work(this.value() * other);
 	}
 	@Override
 	public Length div(Force force)
 	{
-		return Factory.lengthInMeter(Factory.workInNewtonMeter(this.value()).value() / Factory.forceInNewton(force.value()).value());
+		return Factory.length(this.value() / force.value());
 	}
 
 	@Override
 	public Force div(Length length)
 	{
-		return Factory.forceInNewton(Factory.workInNewtonMeter(this.value()).value() / Factory.lengthInMeter(length.value()).value());
+		return Factory.force(this.value() / length.value());
 	}
-	
-
-
 }

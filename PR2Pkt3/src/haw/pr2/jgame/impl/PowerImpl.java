@@ -25,27 +25,25 @@ class PowerImpl extends AbstractValuesImpl<Power> implements Power {
 		return obj instanceof Power;
 	}
 	
-	
 	@Override
 	public Power div(double other)
 	{
-		return fromPrototype(Factory.powerInWatt(this.value).value() / other);
+		return Factory.power(this.value() / other);
 	}
 	
 	@Override
 	public Power mul(double other)
 	{
-		return fromPrototype(Factory.powerInWatt(this.value).value() * other);
+		return Factory.powerInWatt(this.value() * other);
 	}
 	@Override
 	public Speed div(Force force)
 	{
-		return Factory.speedInMeterProSeKunde(Factory.powerInWatt(this.value()).value() / Factory.forceInNewton(force.value()).value());
-//		return SpeedImpl.valueOf(Factory.powerInWatt(this.value).value() / force.value());
+		return Factory.speed(this.value() / force.value());
 	}
 	@Override
 	public Force div(Speed speed) {
-		return Factory.forceInNewton(Factory.powerInWatt(this.value()).value() / Factory.speedInMeterProSeKunde(speed.value()).value());
+		return Factory.force(this.value() / speed.value());
 	}
 	@Override
 	public Power value(PowerUnit punit, Multiplier mult)

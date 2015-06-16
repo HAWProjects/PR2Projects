@@ -10,8 +10,8 @@ import haw.pr2.jgame.interfaces.*;
 
 public abstract class Car {
 	private Speed _speed; // Geschwindigkeit [ms^-1]
-	private double _posX; // XPosition des Autos [m]
-	private double _posY; // YPosition des Autos [m]
+	private Length _posX; // XPosition des Autos [m]
+	private Length _posY; // YPosition des Autos [m]
 	private double _proplevel; // Gaspedalstellung
 	private double _brakelevel;
 	private TimeDiff _time; // Zeit [s]
@@ -26,10 +26,10 @@ public abstract class Car {
 	private Traktion _traktion;
 
 	public Car() {
-		this(Factory.timeInSec(0.0), 0.0, 0.0, Factory.speedInMeterProSeKunde(0.0), 0.0, 0.0, 0.0);
+		this(Factory.timeInSec(0.0), Factory.length(0.0), Factory.length(0.0), Factory.speedInMeterProSeKunde(0.0), 0.0, 0.0, 0.0);
 	}
 
-	public Car(TimeDiff time, double posX, double posY, Speed speed, double proplevel, double brakelevel, double steeringLevel) {
+	public Car(TimeDiff time, Length posX, Length posY, Speed speed, double proplevel, double brakelevel, double steeringLevel) {
 		_time = time;
 		_posX = posX;
 		_posY = posY;
@@ -53,19 +53,19 @@ public abstract class Car {
 		_speed = speed;
 	}
 
-	public double getPosX() {
+	public Length getPosX() {
 		return _posX;
 	}
 
-	public void setPosX(double posX) {
+	public void setPosX(Length posX) {
 		_posX = posX;
 	}
 
-	public double getPosY() {
+	public Length getPosY() {
 		return _posY;
 	}
 
-	public void setPosY(double posY) {
+	public void setPosY(Length posY) {
 		_posY = posY;
 	}
 

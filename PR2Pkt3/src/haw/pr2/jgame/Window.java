@@ -25,7 +25,7 @@ public class Window extends JGEngine {
 		timer = Timer.valueOf();
 
 		initEngine(width, height);
-		player = Player.valueOf(this, new Porsche911GT2RS(Factory.timeInSec(0.0),this.getWidth()/2,this.getHeight()/2,Factory.speedInMeterProSeKunde(0.0), 0.0, 0.0, true,true));
+		player = Player.valueOf(this, new Porsche911GT2RS(Factory.timeInSec(0.0),Factory.length(this.getWidth()/2),Factory.length(this.getHeight()/2),Factory.speedInMeterProSeKunde(0.0), 0.0, 0.0, true,true));
 		
 		eis = Switch.valueOf(this, KeyEvent.VK_1);
 		schnee = Switch.valueOf(this, KeyEvent.VK_2);	

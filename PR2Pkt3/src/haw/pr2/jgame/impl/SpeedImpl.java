@@ -12,15 +12,15 @@ import haw.pr2.jgame.units.Multiplier;
 import haw.pr2.jgame.units.SpeedUnit;
 
 class SpeedImpl extends AbstractValuesImpl<Speed> implements Speed {
-	
-	  public static Speed valueOf(double inValue) {
-	        return new SpeedImpl(inValue);
-	    }
-	
+
+	public static Speed valueOf(double inValue) {
+		return new SpeedImpl(inValue);
+	}
+
 	private SpeedImpl(double value) {
 		super(value);
 	}
-	
+
 	@Override
 	public Speed fromPrototype(double value) {
 		return valueOf(value);
@@ -32,49 +32,25 @@ class SpeedImpl extends AbstractValuesImpl<Speed> implements Speed {
 	}
 	
 	@Override
-	public Speed div(double other) {
+	public Speed div(double other) { 
 //		checkNotNull(other);
 //		checkNotNull(other > 0);
-		return fromPrototype(Factory.speedInMeterProSeKunde(this.value()).value() / other);
-	}
-
-	@Override
-	public Speed mul(double other) {
-		return fromPrototype(Factory.speedInMeterProSeKunde(this.value()).value() * other);
+		return Factory.speed(this.value() / other);
 	}
 	@Override
-	public Speed mul(Speed other) {
-		return fromPrototype(Factory.speedInMeterProSeKunde(this.value()).value() * Factory.speedInMeterProSeKunde(other.value()).value());
-	}
-
-//	@Override
-//	public Length mul(TimeDiff timeDiff) {
-//		return Factory.lengthInMeter(Factory.speedInMeterProSeKunde(this.value()).value() * Factory.timeInSec(timeDiff.value()).value());
-////		return LengthImpl.valueOf(Factory.speedInMeterProSeKunde(this.value()).value() * timeDiff.value());
-//	}
-	
+	public Speed mul(double other) { return Factory.speed(this.value() * other);}
+	@Override
+	public Speed mul(Speed other) { return Factory.speed(this.value() * this.value());}
+	@Override
 	public Length mul(TimeDiff timeDiff) { return Factory.length(this.value() * timeDiff.value()); }
-	
-
 	@Override
-	public Force dragForce(Speed maxSpeed, Power maxPower)
-	{
-		return Factory.forceInNewton(Factory.speedInMeterProSeKunde(this.value()).value() * maxSpeed.value() * maxPower.value());
-//		return ForceImpl.valueOf(maxSpeed.value() * maxSpeed.value()* maxPower.value());
-	}
-
+	public Force dragForce(Speed maxSpeed, Power maxPower) { return Factory.force(maxSpeed.value() * maxSpeed.value()* maxSpeed.value()); }
 	@Override
-	public Acc curveAcc(Length length) {
-		return Factory.accInMeterProSeKundeQuadrat((Factory.speedInMeterProSeKunde(this.value()).value() * Factory.speedInMeterProSeKunde(this.value()).value())/ Factory.lengthInMeter(length.value()).value());
-	}
+	public Acc curveAcc(Length length) { return Factory.acc(this.value * this.value/length.value());}
 
 	@Override
 	public Speed value(LengthUnit lunit, Multiplier mult)
 	{
 		return Factory.speed(value, lunit, mult);
 	}
-
-	
-
-	
 }

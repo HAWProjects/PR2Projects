@@ -17,9 +17,9 @@ public class Porsche911GT2RS extends Car
 	private boolean asr;
 	
 	public Porsche911GT2RS(){
-		this(Factory.timeInSec(0.0),0.0,0.0,Factory.speedInMeterProSeKunde(0.0),0.0, 0.0, true,true);
+		this(Factory.time(0.0),Factory.length(0.0),Factory.length(0.0),Factory.speed(0.0),0.0, 0.0, true,true);
 	}
-	public Porsche911GT2RS(TimeDiff time, double posX, double posY, Speed speed, double proplevel, double brakelevel, boolean abs,boolean asr) 
+	public Porsche911GT2RS(TimeDiff time, Length posX, Length posY, Speed speed, double proplevel, double brakelevel, boolean abs,boolean asr) 
 	{
 		super(time, posX,posY, speed, proplevel, brakelevel, 0.0);
 		this.abs = abs;
