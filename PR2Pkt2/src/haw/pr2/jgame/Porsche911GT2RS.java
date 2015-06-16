@@ -9,7 +9,7 @@ public class Porsche911GT2RS extends Car
 	private static final double POWERPROPMAX = 456 * Konstants.KILOWATTINWATT ; // 456 * 1000; // Watt [W]
 	private static final double SPEEDMAX = 330.0 / (Konstants.SECONDSINHOUR / Konstants.KILOMETERINMETERS); // Hoechsgeschwindigkeit [m/s]
 	private static final double DRAGCONST = Math.abs(POWERPROPMAX / (Math.pow(SPEEDMAX, 3.0)));  // [kg*m/s**2] 
-	private static final double CURVE_RADIUS = 10.9; // / 2; // Meters [m]
+	private static final double CURVE_RADIUS = 10.9 / 2; // Meters [m]
 
 	
 	public Porsche911GT2RS(){

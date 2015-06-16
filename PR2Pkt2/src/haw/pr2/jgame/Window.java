@@ -17,6 +17,7 @@ public class Window extends JGEngine {
 	private Switch schnee;
 	private Switch naesse;
 
+
 	public static Window valueOf(int width, int height) {
 		return new Window(width, height);
 	}
@@ -31,6 +32,7 @@ public class Window extends JGEngine {
 		eis = Switch.valueOf(this, KeyEvent.VK_1);
 		schnee = Switch.valueOf(this, KeyEvent.VK_2);	
 		naesse = Switch.valueOf(this, KeyEvent.VK_3);
+		
 		
 	}
 

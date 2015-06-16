@@ -19,6 +19,7 @@ public class Player extends JGObject
 	private Lever steeringWheel;
 	private Switch asr;
 	private Switch abs;
+	private Switch reset;
 
 	private Player(JGEngine engine, Car car)
 	{
@@ -30,6 +31,7 @@ public class Player extends JGObject
 		steeringWheel = Lever.valueOf(KeyEvent.VK_RIGHT, KeyEvent.VK_LEFT, engine, 1.0, true, 3.0, true);
 		asr = Switch.valueOf(engine, KeyEvent.VK_S);
 		abs = Switch.valueOf(engine, KeyEvent.VK_A);
+		reset = Switch.valueOf(engine, KeyEvent.VK_R);
 
 	}
 	
@@ -59,6 +61,11 @@ public class Player extends JGObject
 
 		x = car.getPosX();
 		y = car.getPosY();
+		
+		if(reset.update()){
+			car.setPosX(engine.getWidth() / 2);
+			car.setPosY(engine.getHeight() / 2);
+		}
 
 		System.out.println("Proplevel " + car.getProplevel());
 		System.out.println("Lenkrad .......: " + steeringLevel);
