@@ -156,6 +156,7 @@ public abstract class Car {
 	public void update(double aDeltaTime) {
 		getState().switchState(this);
 		getState().step(aDeltaTime, this);	
+		
 		System.out.println("''''''''''''''''''''''''''''''''''''''' " + this.getState());
 	}
 
