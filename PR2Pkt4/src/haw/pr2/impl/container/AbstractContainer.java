@@ -7,6 +7,7 @@ import haw.pr2.interfaces.adminValue.StowageLocation;
 import haw.pr2.interfaces.adminValue.UniqueId;
 import haw.pr2.interfaces.cargo.Container;
 import haw.pr2.interfaces.cargo.Pallet;
+import haw.pr2.interfaces.physicValues.BoundingBox;
 import haw.pr2.interfaces.physicValues.Mass;
 
 /**
@@ -168,6 +169,20 @@ public class AbstractContainer implements Container
 	{
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Mass mass()
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BoundingBox boundingBox()
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
