@@ -5,7 +5,7 @@ package haw.pr2.impl.pallet;
 
 import haw.pr2.interfaces.adminValue.StowageLocation;
 import haw.pr2.interfaces.adminValue.UniqueId;
-import haw.pr2.interfaces.cargo.Pallet;
+import haw.pr2.interfaces.physicObjects.cargo.Pallet;
 import haw.pr2.interfaces.physicValues.BoundingBox;
 import haw.pr2.interfaces.physicValues.Mass;
 
@@ -86,15 +86,7 @@ public class AbstractPallet implements Pallet
 		return false;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Comparable#compareTo(java.lang.Object)
-	 */
-	@Override
-	public int compareTo(Pallet o)
-	{
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public Mass mass()
@@ -109,5 +101,14 @@ public class AbstractPallet implements Pallet
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
 	
 }

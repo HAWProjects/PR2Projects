@@ -8,5 +8,11 @@ package haw.pr2.impl.container;
  */
 public class NonContainer extends AbstractContainer
 {
+	public static NonContainer valueOf(){
+		return new NonContainer();
+	}
 	
+	private NonContainer(){
+	}
+
 }

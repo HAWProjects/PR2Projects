@@ -1,4 +1,4 @@
-package haw.pr2.interfaces;
+package haw.pr2.interfaces.marker;
 
 import haw.pr2.interfaces.adminValue.Mutable;
 import haw.pr2.interfaces.physicValues.Angle;

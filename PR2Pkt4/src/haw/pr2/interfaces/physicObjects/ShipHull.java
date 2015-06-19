@@ -3,14 +3,14 @@
  */
 package haw.pr2.interfaces.physicObjects;
 
-import haw.pr2.interfaces.WithUniqueId;
 import haw.pr2.interfaces.adminValue.Immutable;
+import haw.pr2.interfaces.marker.WithUniqueId;
 
 /**
  * @author Robert
  *
  */
-public interface ShipHull<E extends ShipHull> extends Immutable, Body, WithUniqueId, Comparable<E>
+public interface ShipHull<E extends ShipHull> extends Immutable, Body, WithUniqueId
 {
 	
 }

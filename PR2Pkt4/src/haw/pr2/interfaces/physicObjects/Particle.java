@@ -3,10 +3,10 @@
  */
 package haw.pr2.interfaces.physicObjects;
 
-import haw.pr2.interfaces.WithMass;
-import haw.pr2.interfaces.WithPosition;
-import haw.pr2.interfaces.WithSpeed;
 import haw.pr2.interfaces.adminValue.Mutable;
+import haw.pr2.interfaces.marker.WithMass;
+import haw.pr2.interfaces.marker.WithPosition;
+import haw.pr2.interfaces.marker.WithSpeed;
 
 /**
  * @author Robert

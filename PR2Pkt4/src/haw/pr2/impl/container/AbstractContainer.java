@@ -5,8 +5,8 @@ import java.util.Set;
 
 import haw.pr2.interfaces.adminValue.StowageLocation;
 import haw.pr2.interfaces.adminValue.UniqueId;
-import haw.pr2.interfaces.cargo.Container;
-import haw.pr2.interfaces.cargo.Pallet;
+import haw.pr2.interfaces.physicObjects.cargo.Container;
+import haw.pr2.interfaces.physicObjects.cargo.Pallet;
 import haw.pr2.interfaces.physicValues.BoundingBox;
 import haw.pr2.interfaces.physicValues.Mass;
 
@@ -14,175 +14,159 @@ import haw.pr2.interfaces.physicValues.Mass;
  * @author Robert
  *
  */
-public class AbstractContainer implements Container
+public class AbstractContainer<E extends AbstractContainer> implements Container
 {
+	
 
+	protected AbstractContainer(){
+		
+	}
+	
 	@Override
-	public void load(int bayNo, int rowNo, Pallet elem)
-	{
+	public void load(int bayNo, int rowNo, Object elem) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void load(Pallet elem)
-	{
+	public void load(Object elem) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void loadAll(Collection<? extends Pallet> coll)
-	{
+	public void loadAll(Collection coll) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public boolean isEmpty()
-	{
+	public boolean isEmpty() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean isFull()
-	{
+	public boolean isFull() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean tierIsEmpty(int bay, int row)
-	{
+	public boolean tierIsEmpty(int bay, int row) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean tierIsFull(int bay, int row)
-	{
+	public boolean tierIsFull(int bay, int row) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean contains(Object elem)
-	{
+	public boolean contains(Object elem) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean containsAll(Collection<?> coll)
-	{
+	public boolean containsAll(Collection coll) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Pallet get(StowageLocation loc)
-	{
+	public Object get(StowageLocation loc) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Set<Pallet> getAll()
-	{
+	public Set getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public StowageLocation locationOf(Pallet elem)
-	{
+	public StowageLocation locationOf(Object elem) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Mass emptyMass()
-	{
+	public Mass emptyMass() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Mass maxMass()
-	{
+	public Mass maxMass() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public UniqueId id()
-	{
+	public Mass mass() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public StowageLocation loc()
-	{
+	public BoundingBox boundingBox() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void setLocNull()
-	{
+	public UniqueId id() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+
+	@Override
+	public StowageLocation loc() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setLocNull() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setLoc(Object stowage, StowageLocation loc)
-	{
+	public void setLoc(Object stowage, StowageLocation loc) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public boolean isFree()
-	{
+	public boolean isFree() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean isBlocked()
-	{
+	public boolean isBlocked() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean isOcupied()
-	{
+	public boolean isOcupied() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public int compareTo(Container arg0)
-	{
+	public int compareTo(Object o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
-	public Mass mass()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public BoundingBox boundingBox()
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
 }
