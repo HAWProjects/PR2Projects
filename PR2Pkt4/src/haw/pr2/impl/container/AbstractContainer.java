@@ -15,27 +15,25 @@ import haw.pr2.interfaces.physicValues.Mass;
  *
  */
 public class AbstractContainer<E extends AbstractContainer> implements Container
-{
-	
-
+{	
 	protected AbstractContainer(){
 		
 	}
-	
+
 	@Override
-	public void load(int bayNo, int rowNo, Object elem) {
+	public void load(int bayNo, int rowNo, Pallet elem) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void load(Object elem) {
+	public void load(Pallet elem) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void loadAll(Collection coll) {
+	public void loadAll(Collection<? extends Pallet> coll) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -71,25 +69,25 @@ public class AbstractContainer<E extends AbstractContainer> implements Container
 	}
 
 	@Override
-	public boolean containsAll(Collection coll) {
+	public boolean containsAll(Collection<?> coll) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public Object get(StowageLocation loc) {
+	public Pallet get(StowageLocation loc) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Set getAll() {
+	public Set<Pallet> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public StowageLocation locationOf(Object elem) {
+	public StowageLocation locationOf(Pallet elem) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -124,8 +122,11 @@ public class AbstractContainer<E extends AbstractContainer> implements Container
 		return null;
 	}
 
-	
-	
+	@Override
+	public int compareTo(Container o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	@Override
 	public StowageLocation loc() {
@@ -162,11 +163,6 @@ public class AbstractContainer<E extends AbstractContainer> implements Container
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
+	
+	
 }

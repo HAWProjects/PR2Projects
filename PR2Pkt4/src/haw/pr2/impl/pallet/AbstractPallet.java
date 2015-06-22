@@ -101,9 +101,9 @@ public class AbstractPallet implements Pallet
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
-	public int compareTo(Object o) {
+	public int compareTo(Pallet o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
