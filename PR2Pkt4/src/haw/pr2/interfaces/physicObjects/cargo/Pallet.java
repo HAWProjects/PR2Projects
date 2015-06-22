@@ -11,7 +11,7 @@ import haw.pr2.interfaces.marker.WithUniqueId;
 import haw.pr2.interfaces.physicObjects.Body;
 import haw.pr2.interfaces.physicObjects.Vehicle;
 
-public interface Pallet extends Immutable, Body,WithUniqueId<Pallet>,WithStowLoc,WithForm,Comparable<Pallet>
+public interface Pallet extends Immutable, Body,WithUniqueId,WithStowLoc,WithForm,Comparable<Pallet>
 {
 	
 }

@@ -7,7 +7,7 @@ import haw.pr2.interfaces.marker.WithStowLoc;
 import haw.pr2.interfaces.marker.WithUniqueId;
 import haw.pr2.interfaces.physicObjects.Vehicle;
 
-public interface Container extends Stowage<Pallet>,WithUniqueId<Container>,WithStowLoc,WithForm,Comparable<Container>
+public interface Container extends Stowage<Pallet>,WithUniqueId,WithStowLoc,WithForm,Comparable<Container>
 {
 	
 }

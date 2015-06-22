@@ -5,7 +5,7 @@ package haw.pr2.interfaces.marker;
  */
 import haw.pr2.interfaces.adminValue.UniqueId;
 
-public interface WithUniqueId<E extends WithUniqueId<E>> extends Comparable<E>
+public interface WithUniqueId 
 {
 	UniqueId id();
 }
