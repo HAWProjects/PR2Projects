@@ -3,10 +3,8 @@
  */
 package haw.pr2.impl.pallet;
 
-import com.google.common.util.concurrent.FakeTimeLimiter;
 
 import haw.pr2.impl.UniqueIdImpl;
-import haw.pr2.impl.container.NonContainer;
 import haw.pr2.impl.values.Factory;
 import haw.pr2.interfaces.adminValue.StowageLocation;
 import haw.pr2.interfaces.adminValue.UniqueId;

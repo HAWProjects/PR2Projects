@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import haw.pr2.impl.Bounded3DimStackImpl;
 import haw.pr2.impl.StowageLocationImpl;
 import haw.pr2.impl.container.ContainerFactory;
-import haw.pr2.impl.container.ContainerImpl;
 import haw.pr2.impl.pallet.PalletFactory;
 import haw.pr2.impl.values.Factory;
 import haw.pr2.interfaces.physicObjects.cargo.Container;
@@ -32,16 +31,15 @@ public class Test3DimStack {
     @Test
     public void testIsEmpty() {
         assertTrue(instance.isEmpty());
-        instance.load(PalletFactory.pallet100KG());
+//        instance.load(PalletFactory.pallet100KG());
         assertFalse(instance.isEmpty());
     }
     
 	@Test
 	public void test3DimStackFull() {
 		for(int i = 0; i < 200; i++){
-			instance.load(PalletFactory.pallet100KG());
+//			instance.load(PalletFactory.pallet100KG());
 		}
 		assertTrue(instance.isFull());
 	}
-
 }

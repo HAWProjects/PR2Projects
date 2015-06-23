@@ -15,7 +15,7 @@ import haw.pr2.interfaces.physicObjects.cargo.Stowage;
 import haw.pr2.interfaces.physicValues.Length;
 import haw.pr2.interfaces.physicValues.Mass;
 
-public class ContainerImpl extends AbstractContainer<ContainerImpl> {
+class ContainerImpl extends AbstractContainer<ContainerImpl> {
 
 	private final UniqueId id;
 	private StowageLocation loc;
