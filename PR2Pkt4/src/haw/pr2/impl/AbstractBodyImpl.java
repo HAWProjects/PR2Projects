@@ -37,8 +37,7 @@ public class AbstractBodyImpl implements Body {
 	 */
 	@Override
 	public BoundingBox boundingBox() {
-		// TODO Auto-generated method stub
-		return null;
+		return boundingBox;
 	}
 
 }

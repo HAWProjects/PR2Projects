@@ -5,7 +5,6 @@ package haw.pr2.interfaces.marker;
  */
 import haw.pr2.interfaces.adminValue.UniqueId;
 
-public interface WithUniqueId 
-{
+public interface WithUniqueId {
 	UniqueId id();
 }

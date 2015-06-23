@@ -1,4 +1,4 @@
-package haw.pr2.interfaces.vehicle;
+package haw.pr2.interfaces.physicObjects.vehicle;
 
 import haw.pr2.interfaces.marker.WithCargo;
 import haw.pr2.interfaces.physicObjects.Vehicle;
