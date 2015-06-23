@@ -5,7 +5,6 @@ import haw.pr2.interfaces.physicObjects.cargo.Stowage;
 
 /**
  * @author Robert
- *
  */
 public class ContainerFactory
 {

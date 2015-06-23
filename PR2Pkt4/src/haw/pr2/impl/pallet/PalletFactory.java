@@ -11,7 +11,6 @@ import haw.pr2.interfaces.units.Multiplier;
 
 /**
  * @author Robert
- *
  */
 public class PalletFactory {
 	private PalletFactory() {
@@ -26,7 +25,6 @@ public class PalletFactory {
 	}
 
 	private static Pallet pallet(int mass, MassUnit kilogramm, Multiplier none) {
-
 		return pallet(Factory.mass(mass * kilogramm.getFactor() * none.getMultiplier()));
 	}
 

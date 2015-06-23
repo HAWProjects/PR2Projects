@@ -15,7 +15,7 @@ import haw.pr2.interfaces.physicObjects.cargo.Stowage;
 import haw.pr2.interfaces.physicValues.Length;
 import haw.pr2.interfaces.physicValues.Mass;
 
-public class ContainerImpl extends AbstractContainer {
+public class ContainerImpl extends AbstractContainer<ContainerImpl> {
 
 	private final UniqueId id;
 	private StowageLocation loc;
@@ -141,7 +141,7 @@ public class ContainerImpl extends AbstractContainer {
 	}
 
 	@Override
-	public void setLoc(Stowage stowage, StowageLocation loc) {
+	public void setLoc(Stowage<Container> stowage, StowageLocation loc) {
 		this.stowage = stowage;
         this.loc = loc;
 	}

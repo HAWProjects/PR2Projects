@@ -53,7 +53,7 @@ public class PalletImpl extends AbstractPallet
 	}
 
 	@Override
-	public void setLoc(Stowage stowage, StowageLocation loc) {
+	public void setLoc(Stowage<Pallet> stowage, StowageLocation loc) {
 		this.stowage = stowage;
 		this.loc = loc;
 	}

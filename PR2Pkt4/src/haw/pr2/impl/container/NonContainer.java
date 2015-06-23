@@ -17,7 +17,7 @@ import java.util.Set;
 /**
  * @author Robert
  */
-public class NonContainer extends AbstractContainer
+public class NonContainer extends AbstractContainer<NonContainer>
 {
 	public static NonContainer valueOf(){
 		return new NonContainer();
