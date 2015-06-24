@@ -22,4 +22,12 @@ public class ContainerFactory
 	private static Container container(Stowage<Container> stowage, int breite, int laenge, int hoehe) {
 		return ContainerImpl.valueOf(stowage, breite, laenge, hoehe);
 	}
+	
+	   public static Container NULLContainer(){
+	        return NullContainerImpl.valueOf();
+	    }
+	    
+	    public static Container NONContainer(){
+	        return NonContainerImpl.valueOf();
+	    }
 }

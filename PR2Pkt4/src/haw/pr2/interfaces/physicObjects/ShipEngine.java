@@ -3,7 +3,7 @@
  */
 package haw.pr2.interfaces.physicObjects;
 
-import haw.pr2.interfaces.adminValue.Mutable;
+import haw.pr2.interfaces.Mutable;
 import haw.pr2.interfaces.marker.WithPower;
 import haw.pr2.interfaces.marker.WithUniqueId;
 

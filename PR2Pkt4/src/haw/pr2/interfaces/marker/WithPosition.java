@@ -4,5 +4,5 @@ import haw.pr2.interfaces.physicValues.Length;
 
 public interface WithPosition
 {
-	Length pos();
+	public Length pos();
 }

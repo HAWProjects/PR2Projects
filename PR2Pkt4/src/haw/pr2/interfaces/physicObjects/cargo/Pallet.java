@@ -2,7 +2,7 @@ package haw.pr2.interfaces.physicObjects.cargo;
 
 import java.util.Comparator;
 
-import haw.pr2.interfaces.adminValue.Immutable;
+import haw.pr2.interfaces.Immutable;
 import haw.pr2.interfaces.adminValue.StowageLocation;
 import haw.pr2.interfaces.adminValue.UniqueId;
 import haw.pr2.interfaces.marker.WithForm;

@@ -27,5 +27,13 @@ public class PalletFactory {
 	private static Pallet pallet(int mass, MassUnit kilogramm, Multiplier none) {
 		return pallet(Factory.mass(mass * kilogramm.getFactor() * none.getMultiplier()));
 	}
+	
+    public static Pallet NullPallet(){
+        return NullPalletImpl.valueOf();
+    }
+    
+    public static Pallet nonPallet(){
+        return NonPalletImpl.valueOf();
+    }
 
 }

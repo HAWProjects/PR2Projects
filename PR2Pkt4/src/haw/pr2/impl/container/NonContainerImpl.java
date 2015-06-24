@@ -3,9 +3,6 @@
  */
 package haw.pr2.impl.container;
 
-import java.util.Collection;
-import java.util.Set;
-
 import haw.pr2.interfaces.adminValue.StowageLocation;
 import haw.pr2.interfaces.adminValue.UniqueId;
 import haw.pr2.interfaces.physicObjects.cargo.Container;
@@ -13,16 +10,20 @@ import haw.pr2.interfaces.physicObjects.cargo.Pallet;
 import haw.pr2.interfaces.physicObjects.cargo.Stowage;
 import haw.pr2.interfaces.physicValues.Mass;
 
+import java.util.Collection;
+import java.util.Set;
+
+
 /**
  * @author Robert
  */
-class NullContainer extends AbstractContainer
+class NonContainerImpl extends AbstractContainer<NonContainerImpl>
 {
-	public static NullContainer valueOf(){
-		return new NullContainer();
+	public static NonContainerImpl valueOf(){
+		return new NonContainerImpl();
 	}
 	
-	private NullContainer(){
+	private NonContainerImpl(){
 	}
 
 	@Override
@@ -162,4 +163,5 @@ class NullContainer extends AbstractContainer
 		// TODO Auto-generated method stub
 		
 	}
+
 }

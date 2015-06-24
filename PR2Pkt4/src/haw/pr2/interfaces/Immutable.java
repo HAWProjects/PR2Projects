@@ -1,4 +1,4 @@
-package haw.pr2.interfaces.adminValue;
+package haw.pr2.interfaces;
 /**
  * @author Robert
  *

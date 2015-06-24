@@ -6,7 +6,7 @@ package haw.pr2.interfaces.physicObjects.cargo;
 import java.util.Collection;
 import java.util.Set;
 
-import haw.pr2.interfaces.adminValue.Mutable;
+import haw.pr2.interfaces.Mutable;
 import haw.pr2.interfaces.adminValue.StowageLocation;
 
 public interface Bounded3DimStack<E> extends Mutable

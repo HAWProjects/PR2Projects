@@ -3,7 +3,6 @@
  */
 package haw.pr2.impl.pallet;
 
-
 import haw.pr2.impl.UniqueIdImpl;
 import haw.pr2.impl.values.Factory;
 import haw.pr2.interfaces.adminValue.StowageLocation;
@@ -16,13 +15,16 @@ import haw.pr2.interfaces.physicValues.Mass;
  * @author Robert
  *
  */
-public class NonPallet extends AbstractPallet
+public class NullPalletImpl extends AbstractPallet
 {
-	public static NonPallet valueOf(){
-		return new NonPallet();
+	private final UniqueId id;
+	
+	public static NullPalletImpl valueOf(){
+		return new NullPalletImpl();
 	}
 	
-	private NonPallet(){
+	private NullPalletImpl(){
+		this.id = UniqueIdImpl.valueOf();
 	}
 
 	@Override
@@ -32,7 +34,7 @@ public class NonPallet extends AbstractPallet
 
 	@Override
 	public UniqueId id() {
-		return UniqueIdImpl.valueOf();
+		return id;
 	}
 
 	@Override
@@ -44,7 +46,6 @@ public class NonPallet extends AbstractPallet
 	@Override
 	public void setLocNull() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -55,17 +56,17 @@ public class NonPallet extends AbstractPallet
 
 	@Override
 	public boolean isFree() {
-		return false;
-	}
-
-	@Override
-	public boolean isBlocked() {
 		return true;
 	}
 
 	@Override
-	public boolean isOcupied() {
+	public boolean isBlocked() {
 		return false;
+	}
+
+	@Override
+	public boolean isOcupied() {
+		return true;
 	}
 
 	@Override

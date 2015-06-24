@@ -3,7 +3,7 @@
  */
 package haw.pr2.interfaces.physicObjects;
 
-import haw.pr2.interfaces.adminValue.Immutable;
+import haw.pr2.interfaces.Immutable;
 import haw.pr2.interfaces.marker.WithUniqueId;
 
 /**
