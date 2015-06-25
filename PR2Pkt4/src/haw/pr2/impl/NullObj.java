@@ -24,7 +24,7 @@ public class NullObj<E extends WithForm> implements WithForm {
 
 	@Override
 	public boolean isOcupied() {
-		return true;
+		return false;
 	}
 
 }

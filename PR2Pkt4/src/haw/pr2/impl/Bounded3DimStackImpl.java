@@ -60,11 +60,9 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
     	}
     }
     
-    
-    private E getNullObject() throws Exception{
+	private E getNullObject() throws Exception{
     	return (E)NullObj.valueOf();
     }
-    
 	
 	@Override
 	public void load(int bayNo, int rowNo, E elem) {

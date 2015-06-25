@@ -1,4 +1,7 @@
 package haw.pr2.interfaces.adminValue;
+
+import haw.pr2.interfaces.ComparableContainer;
+
 /**
  * @author Robert
  *

@@ -1,6 +1,10 @@
 package haw.pr2.tests;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import haw.pr2.impl.Bounded3DimStackImpl;
 import haw.pr2.impl.StowageLocationImpl;
 import haw.pr2.impl.container.ContainerFactory;
@@ -58,8 +62,6 @@ public class Test3DimStack {
 		assertTrue(container.isFull());
 	}
 	
-
-	
 	 /**
      * Test Stack enthält Pallet.
      */
@@ -71,6 +73,16 @@ public class Test3DimStack {
         assertTrue(container.contains(elem));
     }
     
+    @Test
+    public void testLoad(){
+    	Pallet nullelem = PalletFactory.NullPallet();
+    	Pallet elem = PalletFactory.pallet100KG();
+    	container.load(nullelem);
+    	assertTrue(container.isEmpty());
+    	container.load(elem);
+    	assertFalse(container.isEmpty());
+    	assertTrue(container.contains(elem));
+    }
     
 	/**
 	 * Test load position
@@ -93,5 +105,19 @@ public class Test3DimStack {
             container.load(PalletFactory.pallet100KG());
         }
         assertEquals(bay*row*tier, container.getAll().size());
+    }
+    
+    /**
+     * Test load Collection
+     */
+    @Test
+    public void testLoad_Collection() {
+        List<Pallet> elems = new ArrayList<>();
+        for (int i=0; i<5; i++) {
+            elems.add(PalletFactory.pallet100KG());
+        }
+        assertFalse(container.containsAll(elems));
+        container.loadAll(elems);
+        assertTrue(container.containsAll(elems));
     }
 }

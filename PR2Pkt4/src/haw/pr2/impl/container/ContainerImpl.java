@@ -1,5 +1,6 @@
 package haw.pr2.impl.container;
 
+import static com.google.common.base.Preconditions.*;
 import java.util.Collection;
 import java.util.Set;
 
@@ -12,17 +13,17 @@ import haw.pr2.interfaces.adminValue.UniqueId;
 import haw.pr2.interfaces.physicObjects.cargo.Container;
 import haw.pr2.interfaces.physicObjects.cargo.Pallet;
 import haw.pr2.interfaces.physicObjects.cargo.Stowage;
-import haw.pr2.interfaces.physicValues.Length;
 import haw.pr2.interfaces.physicValues.Mass;
 
 public class ContainerImpl extends AbstractContainer<ContainerImpl> {
 
 	private final UniqueId id;
 	private StowageLocation loc;
-	private Stowage<Container> stowage;
+	private Stowage<Container> stowage; // Container weiß zu welchem Lager er gehört
 	private final Bounded3DimStackImpl<Pallet> palletStowage;
 
 	public static ContainerImpl valueOf(Stowage<Container> stowage) {
+		checkNotNull(stowage);
 		return new ContainerImpl(stowage);
 	}
 	
