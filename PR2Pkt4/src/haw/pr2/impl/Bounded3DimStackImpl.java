@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import haw.pr2.impl.container.ContainerFactory;
 import haw.pr2.interfaces.adminValue.StowageLocation;
 import haw.pr2.interfaces.marker.WithForm;
 import haw.pr2.interfaces.physicObjects.cargo.Bounded3DimStack;
@@ -27,16 +28,43 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
     private final int tiers;
     private final List<List<List<E>>> stowage;
 	
-	private Bounded3DimStackImpl(int bays, int rows, int tiers) {
+	private Bounded3DimStackImpl(int bays, int rows, int tiers)  {
 		this.bays = bays;
 		this.rows = rows;
 		this.tiers = tiers;
 		this.stowage = new ArrayList<>();
+		
+		try {
+			initStowage();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
     public static Bounded3DimStackImpl valueOf(int bays, int rows, int tiers) {
         return new Bounded3DimStackImpl(bays, rows, tiers);
     }
+    
+    private void initStowage() throws Exception {
+    	stowage.clear();
+    	for(int bay = 0; bay < bays; bay++){
+    		List<List<E>> rowL = new ArrayList<>();
+    		for(int row = 0; row < rows; row++ ){
+    			List<E> tierL = new ArrayList<>();
+    			for(int tier = 0; tier< tiers; tier++){
+    				tierL.add(getNullObject());
+    			}
+    			rowL.add(tierL);
+    		}
+    		stowage.add(rowL);
+    	}
+    }
+    
+    
+    private E getNullObject() throws Exception{
+    	return (E)NullObj.valueOf();
+    }
+    
 	
 	@Override
 	public void load(int bayNo, int rowNo, E elem) {

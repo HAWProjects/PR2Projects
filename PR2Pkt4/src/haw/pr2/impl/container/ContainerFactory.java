@@ -6,8 +6,7 @@ import haw.pr2.interfaces.physicObjects.cargo.Stowage;
 /**
  * @author Robert
  */
-public class ContainerFactory
-{
+public class ContainerFactory {
 	private ContainerFactory() {
 	}
 
@@ -16,18 +15,18 @@ public class ContainerFactory
 	}
 
 	public static Container container20ftDryLoad(Stowage<Container> stowage) {
-		return container(stowage, 8, 20, 8);
+		return container(stowage);
 	}
 
-	private static Container container(Stowage<Container> stowage, int breite, int laenge, int hoehe) {
-		return ContainerImpl.valueOf(stowage, breite, laenge, hoehe);
+//	private static Container container(Stowage<Container> stowage, int breite, int laenge, int hoehe) {
+//		return ContainerImpl.valueOf(stowage, breite, laenge, hoehe);
+//	}
+
+	public static Container NULLContainer() {
+		return NullContainerImpl.valueOf();
 	}
-	
-	   public static Container NULLContainer(){
-	        return NullContainerImpl.valueOf();
-	    }
-	    
-	    public static Container NONContainer(){
-	        return NonContainerImpl.valueOf();
-	    }
+
+	public static Container NONContainer() {
+		return NonContainerImpl.valueOf();
+	}
 }

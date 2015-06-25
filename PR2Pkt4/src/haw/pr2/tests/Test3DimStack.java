@@ -7,6 +7,7 @@ import haw.pr2.impl.container.ContainerFactory;
 import haw.pr2.impl.pallet.PalletFactory;
 import haw.pr2.impl.values.Factory;
 import haw.pr2.impl.container.*;
+import haw.pr2.interfaces.adminValue.StowageLocation;
 import haw.pr2.interfaces.physicObjects.cargo.Container;
 import haw.pr2.interfaces.physicObjects.cargo.ContainerStowage;
 import haw.pr2.interfaces.physicObjects.cargo.Pallet;
@@ -18,34 +19,79 @@ import org.junit.Test;
 
 public class Test3DimStack {
 	
-	private static Bounded3DimStackImpl<Container> instance;
 	private static ContainerImpl container;
 	private static Stowage<Container> stowage;
+	private static int bay = 5;
+	private static int row = 10;
+	private static int tier = 5;
 	
 	@Before
 	public void setUp() throws Exception {
-		instance = Bounded3DimStackImpl.valueOf(2, 4, 2);
-//		stowage = neuen Stowage erstellen-> ContainerStowageImpl;
+		stowage = ContainerStowageImpl.valueOf(15, 15, 15);
 		container = ContainerImpl.valueOf(stowage);
 	}
 	
     @Test
     public void testValueOf() {
-        assertNotNull(instance);
+        assertNotNull(container);
     }
     
+	 /**
+     * Test Stack ist leer.
+     */
     @Test
     public void testIsEmpty() {
-        assertTrue(stowage.isEmpty());
+        assertTrue(container.isEmpty());
         container.load(PalletFactory.pallet100KG());
-        assertFalse(stowage.isEmpty());
+        assertFalse(container.isEmpty());
     }
     
-//	@Test
-//	public void test3DimStackFull() {
-//		for(int i = 0; i < 200; i++){
-////			instance.load(PalletFactory.pallet100KG());
-//		}
-//		assertTrue(instance.isFull());
-//	}
+	 /**
+     * Test Stack ist voll befüllt.
+     */
+	@Test
+	public void test3DimStackFull() {
+		for(int i = 0; i < (bay*row*tier); i++){
+			assertFalse(container.isFull());
+			container.load(PalletFactory.pallet100KG());
+		}
+		assertTrue(container.isFull());
+	}
+	
+
+	
+	 /**
+     * Test Stack enthält Pallet.
+     */
+    @Test
+    public void testContains() {
+        Pallet elem = PalletFactory.pallet100KG();
+        assertFalse(container.contains(elem));
+        container.load(elem);
+        assertTrue(container.contains(elem));
+    }
+    
+    
+	/**
+	 * Test load position
+	 */
+    @Test
+    public void testLoadPos() {
+    	Pallet elem = PalletFactory.pallet100KG();
+    	container.load(1, 3, elem);
+    	StowageLocation loc = container.locationOf(elem);
+    	StowageLocation expectedLoc = StowageLocationImpl.valueOf(1, 3, 0);
+    	assertEquals(expectedLoc, loc);
+    }
+    
+    /**
+     * Test getAll 
+     */
+    @Test
+    public void testGetAll() {
+        for (int i=0; i<(bay*row*tier); i++) {
+            container.load(PalletFactory.pallet100KG());
+        }
+        assertEquals(bay*row*tier, container.getAll().size());
+    }
 }

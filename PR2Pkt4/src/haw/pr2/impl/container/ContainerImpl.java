@@ -26,9 +26,9 @@ public class ContainerImpl extends AbstractContainer<ContainerImpl> {
 		return new ContainerImpl(stowage);
 	}
 	
-	public static ContainerImpl valueOf(Stowage<Container> stowage, int bay,  int row, int tier) {
-		return new ContainerImpl(stowage, bay, row, tier);
-	}
+//	public static ContainerImpl valueOf(Stowage<Container> stowage, int bay,  int row, int tier) {
+//		return new ContainerImpl(stowage, bay, row, tier);
+//	}
 
 	private ContainerImpl(Stowage<Container> stowage) {
 		this.stowage = stowage;
@@ -37,12 +37,12 @@ public class ContainerImpl extends AbstractContainer<ContainerImpl> {
 		this.palletStowage = Bounded3DimStackImpl.valueOf(5, 10, 5);
 	}
 	
-	private ContainerImpl(Stowage<Container> stowage, int bay, int row, int tier) {
-		this.stowage = stowage;
-		this.id = UniqueIdImpl.valueOf();
-		this.loc = NullStowageLocation.valueOf();
-		this.palletStowage = Bounded3DimStackImpl.valueOf(bay, row, tier);
-	}
+//	private ContainerImpl(Stowage<Container> stowage, int bay, int row, int tier) {
+//		this.stowage = stowage;
+//		this.id = UniqueIdImpl.valueOf();
+//		this.loc = NullStowageLocation.valueOf();
+//		this.palletStowage = Bounded3DimStackImpl.valueOf(bay, row, tier);
+//	}
 
 	@Override
 	public Mass emptyMass() {
