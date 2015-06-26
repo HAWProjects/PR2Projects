@@ -18,14 +18,14 @@ import static com.google.common.base.Preconditions.*;
 /**
  * @author Robert
  *
- * @param <E>
+ * @param <T>
  */
-public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStack<E> {
+public class Bounded3DimStackImpl<T extends WithForm> implements Bounded3DimStack<T> {
 
     private final int bays;
     private final int rows;
     private final int tiers;
-    private final List<List<List<E>>> stowage;
+    private final List<List<List<T>>> stowage;
 	
 
 	/**
@@ -54,9 +54,9 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
     private void initStowage() throws Exception {
     	stowage.clear();
     	for(int bay = 0; bay < bays; bay++){
-    		List<List<E>> rowL = new ArrayList<>();
+    		List<List<T>> rowL = new ArrayList<>();
     		for(int row = 0; row < rows; row++ ){
-    			List<E> tierL = new ArrayList<>();
+    			List<T> tierL = new ArrayList<>();
     			for(int tier = 0; tier< tiers; tier++){
     				tierL.add(getNullObject());
     			}
@@ -66,14 +66,14 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
     	}
     }
     
-	private E getNullObject() throws Exception{
-    	return (E)NullObj.valueOf();
+	private T getNullObject() throws Exception{
+    	return (T)NullObj.valueOf();
     }
 	
 	
 	@Override
-	public void load(int bayNo, int rowNo, E elem) {
-		List<E> tierlist = stowage.get(bayNo).get(rowNo);
+	public void load(int bayNo, int rowNo, T elem) {
+		List<T> tierlist = stowage.get(bayNo).get(rowNo);
 		for(int i = 0; i < tierlist.size(); i++){
 			if(tierlist.get(i).isFree()){
 				tierlist.set(i, elem);
@@ -84,10 +84,10 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 	}
 
 	@Override
-	public void load(E elem) {
+	public void load(T elem) {
 		checkNotNull(elem);
-		for(List<List<E>> rowl :stowage){
-			for(List<E> tierl : rowl){
+		for(List<List<T>> rowl :stowage){
+			for(List<T> tierl : rowl){
 				for(int i= 0; i< tierl.size(); i++){
 					if(tierl.get(i).isFree()){
 						tierl.set(i, elem);
@@ -100,9 +100,9 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 	}
 
 	@Override
-	public void loadAll(Collection<? extends E> coll) {
+	public void loadAll(Collection<? extends T> coll) {
 		checkNotNull(coll);
-		for(E elem : coll){
+		for(T elem : coll){
 			checkNotNull(elem);
 			load(elem);
 		}
@@ -111,7 +111,7 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 	@Override
 	public boolean isEmpty() {
 		for(int bay=0; bay<stowage.size(); bay++){
-			List<List<E>> rowL = stowage.get(bay);
+			List<List<T>> rowL = stowage.get(bay);
 			for(int row = 0;row < rowL.size();row++ ){
 				if(!tierIsEmpty(bay, row)){
 					return false;
@@ -124,7 +124,7 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 	@Override
 	public boolean isFull() {
 		for(int bay=0; bay<stowage.size(); bay++){
-			List<List<E>> rowL = stowage.get(bay);
+			List<List<T>> rowL = stowage.get(bay);
 			for(int row = 0;row < rowL.size(); row++){
 				if(!tierIsFull(bay, row)){
 					return false;
@@ -136,8 +136,8 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 
 	@Override
 	public boolean tierIsEmpty(int bay, int row) {
-		List<E> tierL = stowage.get(bay).get(row);
-		for(E elem : tierL){
+		List<T> tierL = stowage.get(bay).get(row);
+		for(T elem : tierL){
 			if(elem.isFree()){
 				return true;
 			}else if(elem.isOcupied()){
@@ -149,9 +149,9 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 
 	@Override
 	public boolean tierIsFull(int bay, int row) {
-		List<E> tierL = stowage.get(bay).get(row);
+		List<T> tierL = stowage.get(bay).get(row);
 		//Collections.reverse(tierL);
-		for(E elem: tierL){
+		for(T elem: tierL){
 			if(elem.isFree()){
 				return false;
 			}
@@ -161,8 +161,8 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 
 	@Override
 	public boolean contains(Object elem) {
-		for(List<List<E>> rowL : stowage){
-			for(List<E> tierL: rowL){
+		for(List<List<T>> rowL : stowage){
+			for(List<T> tierL: rowL){
 				if(tierL.contains(elem)){
 					return true;
 				}
@@ -181,16 +181,16 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 	}
 
 	@Override
-	public E get(StowageLocation loc) {
+	public T get(StowageLocation loc) {
 		return stowage.get(loc.bay()).get(loc.row()).get(loc.tier());
 	}
 
 	@Override
-	public Set<E> getAll() {
-		Set<E> resultSet = new HashSet<>();
-		for(List<List<E>> rowL: stowage){
-			for(List<E> tierL:rowL){
-				for(E elem: tierL){
+	public Set<T> getAll() {
+		Set<T> resultSet = new HashSet<>();
+		for(List<List<T>> rowL: stowage){
+			for(List<T> tierL:rowL){
+				for(T elem: tierL){
 					resultSet.add(elem);
 				}
 			}
@@ -199,12 +199,12 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 	}
 
 	@Override
-	public StowageLocation locationOf(E elem) {
+	public StowageLocation locationOf(T elem) {
 		checkNotNull(elem);
 		for(int bay=0; bay<stowage.size();bay++){
-			List<List<E>> rowL = stowage.get(bay);
+			List<List<T>> rowL = stowage.get(bay);
 			for(int row=0; row<rowL.size(); row++){
-				List<E> tierL = rowL.get(row);
+				List<T> tierL = rowL.get(row);
 				if(tierL.contains(elem)){
 					return  StowageLocationImpl.valueOf(bay, row, tierL.indexOf(elem)); 
 				}
