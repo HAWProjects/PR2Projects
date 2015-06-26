@@ -48,7 +48,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	@Override
 	public void load(Container elem) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
@@ -57,7 +56,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	@Override
 	public void loadAll(Collection<? extends Container> coll) {
 		// TODO Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)

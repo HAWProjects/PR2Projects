@@ -3,24 +3,23 @@
  */
 package haw.pr2.impl;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import haw.pr2.impl.container.ContainerFactory;
 import haw.pr2.interfaces.adminValue.StowageLocation;
 import haw.pr2.interfaces.marker.WithForm;
 import haw.pr2.interfaces.physicObjects.cargo.Bounded3DimStack;
 
-/**
- * @author abt434
- *
- */
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-	
+import static com.google.common.base.Preconditions.*;
+
+/**
+ * @author Robert
+ *
+ * @param <E>
+ */
 public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStack<E> {
 
     private final int bays;
@@ -28,6 +27,12 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
     private final int tiers;
     private final List<List<List<E>>> stowage;
 	
+
+	/**
+	 * @param bays
+	 * @param rows
+	 * @param tiers
+	 */
 	private Bounded3DimStackImpl(int bays, int rows, int tiers)  {
 		this.bays = bays;
 		this.rows = rows;
@@ -45,6 +50,7 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
         return new Bounded3DimStackImpl(bays, rows, tiers);
     }
     
+    //Initialisierung des 3DimStacks
     private void initStowage() throws Exception {
     	stowage.clear();
     	for(int bay = 0; bay < bays; bay++){
@@ -64,6 +70,7 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
     	return (E)NullObj.valueOf();
     }
 	
+	
 	@Override
 	public void load(int bayNo, int rowNo, E elem) {
 		List<E> tierlist = stowage.get(bayNo).get(rowNo);
@@ -78,6 +85,7 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 
 	@Override
 	public void load(E elem) {
+		checkNotNull(elem);
 		for(List<List<E>> rowl :stowage){
 			for(List<E> tierl : rowl){
 				for(int i= 0; i< tierl.size(); i++){
@@ -93,7 +101,9 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 
 	@Override
 	public void loadAll(Collection<? extends E> coll) {
+		checkNotNull(coll);
 		for(E elem : coll){
+			checkNotNull(elem);
 			load(elem);
 		}
 	}
@@ -190,6 +200,7 @@ public class Bounded3DimStackImpl<E extends WithForm> implements Bounded3DimStac
 
 	@Override
 	public StowageLocation locationOf(E elem) {
+		checkNotNull(elem);
 		for(int bay=0; bay<stowage.size();bay++){
 			List<List<E>> rowL = stowage.get(bay);
 			for(int row=0; row<rowL.size(); row++){

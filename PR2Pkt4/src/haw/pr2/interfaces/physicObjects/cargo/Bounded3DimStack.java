@@ -11,15 +11,24 @@ import haw.pr2.interfaces.adminValue.StowageLocation;
 
 public interface Bounded3DimStack<E> extends Mutable
 {
+	// leadt eine element auf einen speziellen Platz
 	void load(int bayNo, int rowNo, E elem);
+	// leadt ein Element in den Stack auf einen freien Platz
 	void load(E elem);
+	//leadt eine Collection in den Stack
 	void loadAll(Collection<? extends E> coll);
 	
+	//prueft ob der Stack leer ist
 	boolean isEmpty();
+	// prueft ob der Stack voll ist
 	boolean isFull();
+	// prueft ob das tier leer ist
 	boolean tierIsEmpty(int bay, int row);
+	// prueft ob das tier voll ist
 	boolean tierIsFull(int bay, int row);
+	// prueft ob der Stack das Object enthaelt
 	boolean contains(Object elem);
+	// prueft ob der Stack die Collection enthaelt
 	boolean containsAll(Collection<?> coll);
 	
 	//gibt das an der Position vorhandene Element zurück

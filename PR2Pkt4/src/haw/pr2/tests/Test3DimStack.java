@@ -1,38 +1,38 @@
 package haw.pr2.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import haw.pr2.impl.StowageLocationImpl;
+import haw.pr2.impl.container.ContainerImpl;
+import haw.pr2.impl.container.ContainerStowageImpl;
+import haw.pr2.impl.pallet.PalletFactory;
+import haw.pr2.interfaces.adminValue.StowageLocation;
+import haw.pr2.interfaces.physicObjects.cargo.Container;
+import haw.pr2.interfaces.physicObjects.cargo.Pallet;
+import haw.pr2.interfaces.physicObjects.cargo.Stowage;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import haw.pr2.impl.Bounded3DimStackImpl;
-import haw.pr2.impl.StowageLocationImpl;
-import haw.pr2.impl.container.ContainerFactory;
-import haw.pr2.impl.pallet.PalletFactory;
-import haw.pr2.impl.values.Factory;
-import haw.pr2.impl.container.*;
-import haw.pr2.interfaces.adminValue.StowageLocation;
-import haw.pr2.interfaces.physicObjects.cargo.Container;
-import haw.pr2.interfaces.physicObjects.cargo.ContainerStowage;
-import haw.pr2.interfaces.physicObjects.cargo.Pallet;
-import haw.pr2.interfaces.physicObjects.cargo.Stowage;
-
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class Test3DimStack {
 	
 	private static ContainerImpl container;
-	private static Stowage<Container> stowage;
+	private static Stowage<Container> stowageContainer;
+	
 	private static int bay = 5;
 	private static int row = 10;
 	private static int tier = 5;
 	
 	@Before
 	public void setUp() throws Exception {
-		stowage = ContainerStowageImpl.valueOf(15, 15, 15);
-		container = ContainerImpl.valueOf(stowage);
+		stowageContainer = ContainerStowageImpl.valueOf(15, 15, 15);
+		container = ContainerImpl.valueOf(stowageContainer);
+		
 	}
 	
     @Test
@@ -44,14 +44,14 @@ public class Test3DimStack {
      * Test Stack ist leer.
      */
     @Test
-    public void testIsEmpty() {
+    public void testIsEmptyContainer() {
         assertTrue(container.isEmpty());
         container.load(PalletFactory.pallet100KG());
         assertFalse(container.isEmpty());
     }
     
 	 /**
-     * Test Stack ist voll befüllt.
+     * Test Stack ist voll befï¿½llt.
      */
 	@Test
 	public void test3DimStackFull() {
@@ -63,7 +63,7 @@ public class Test3DimStack {
 	}
 	
 	 /**
-     * Test Stack enthält Pallet.
+     * Test Stack enthaelt Pallet.
      */
     @Test
     public void testContains() {
@@ -73,6 +73,9 @@ public class Test3DimStack {
         assertTrue(container.contains(elem));
     }
     
+    /**
+     * Test Container load element
+     */
     @Test
     public void testLoad(){
     	Pallet nullelem = PalletFactory.NullPallet();
@@ -112,12 +115,12 @@ public class Test3DimStack {
      */
     @Test
     public void testLoad_Collection() {
-        List<Pallet> elems = new ArrayList<>();
+        List<Pallet> palletList = new ArrayList<>();
         for (int i=0; i<5; i++) {
-            elems.add(PalletFactory.pallet100KG());
+            palletList.add(PalletFactory.pallet100KG());
         }
-        assertFalse(container.containsAll(elems));
-        container.loadAll(elems);
-        assertTrue(container.containsAll(elems));
+        assertFalse(container.containsAll(palletList));
+        container.loadAll(palletList);
+        assertTrue(container.containsAll(palletList));
     }
 }
