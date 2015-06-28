@@ -1,10 +1,11 @@
 /**
  * 
  */
-package haw.pr2.interfaces.physicObjects;
+package haw.pr2.interfaces.physicObjects.vehicle.component;
 
 import haw.pr2.interfaces.Immutable;
-import haw.pr2.interfaces.marker.WithUniqueId;
+import haw.pr2.interfaces.aspects.WithUniqueId;
+import haw.pr2.interfaces.physicObjects.Body;
 
 /**
  * @author Robert

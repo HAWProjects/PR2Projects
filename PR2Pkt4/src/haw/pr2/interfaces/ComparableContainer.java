@@ -3,7 +3,7 @@
  */
 package haw.pr2.interfaces;
 
-import haw.pr2.interfaces.marker.WithUniqueId;
+import haw.pr2.interfaces.aspects.WithUniqueId;
 
 /**
  * @author Robert

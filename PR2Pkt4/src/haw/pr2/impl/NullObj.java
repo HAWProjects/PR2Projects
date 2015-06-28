@@ -1,6 +1,6 @@
 package haw.pr2.impl;
 
-import haw.pr2.interfaces.marker.WithForm;
+import haw.pr2.interfaces.aspects.WithForm;
 
 public class NullObj<E extends WithForm> implements WithForm {
 	
