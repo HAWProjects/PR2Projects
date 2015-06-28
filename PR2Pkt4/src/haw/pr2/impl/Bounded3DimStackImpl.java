@@ -3,6 +3,7 @@
  */
 package haw.pr2.impl;
 
+import haw.pr2.interfaces.NullObjFactory;
 import haw.pr2.interfaces.adminValue.StowageLocation;
 import haw.pr2.interfaces.marker.WithForm;
 import haw.pr2.interfaces.physicObjects.cargo.Bounded3DimStack;
@@ -26,18 +27,19 @@ public class Bounded3DimStackImpl<T extends WithForm> implements Bounded3DimStac
     private final int rows;
     private final int tiers;
     private final List<List<List<T>>> stowage;
-	
+	private NullObjFactory<T> nullObjFactory;
 
 	/**
 	 * @param bays
 	 * @param rows
 	 * @param tiers
 	 */
-	private Bounded3DimStackImpl(int bays, int rows, int tiers)  {
+	private Bounded3DimStackImpl(NullObjFactory<T> nullObjFactory,int bays, int rows, int tiers)  {
 		this.bays = bays;
 		this.rows = rows;
 		this.tiers = tiers;
 		this.stowage = new ArrayList<>();
+		this.nullObjFactory = nullObjFactory;
 		
 		try {
 			initStowage();
@@ -46,8 +48,8 @@ public class Bounded3DimStackImpl<T extends WithForm> implements Bounded3DimStac
 		}
 	}
 	
-    public static Bounded3DimStackImpl valueOf(int bays, int rows, int tiers) {
-        return new Bounded3DimStackImpl(bays, rows, tiers);
+    public static <V extends WithForm> Bounded3DimStackImpl<V> valueOf(NullObjFactory<V> nullObjFactory,int bays, int rows, int tiers) {
+        return new Bounded3DimStackImpl<V>(nullObjFactory, bays, rows, tiers);
     }
     
     //Initialisierung des 3DimStacks
@@ -58,19 +60,14 @@ public class Bounded3DimStackImpl<T extends WithForm> implements Bounded3DimStac
     		for(int row = 0; row < rows; row++ ){
     			List<T> tierL = new ArrayList<>();
     			for(int tier = 0; tier< tiers; tier++){
-    				tierL.add(getNullObject());
+    				tierL.add(nullObjFactory.createNullObj());
     			}
     			rowL.add(tierL);
     		}
     		stowage.add(rowL);
     	}
     }
-    
-	private T getNullObject() throws Exception{
-    	return (T)NullObj.valueOf();
-    }
-	
-	
+
 	@Override
 	public void load(int bayNo, int rowNo, T elem) {
 		List<T> tierlist = stowage.get(bayNo).get(rowNo);
@@ -85,7 +82,7 @@ public class Bounded3DimStackImpl<T extends WithForm> implements Bounded3DimStac
 
 	@Override
 	public void load(T elem) {
-		checkNotNull(elem);
+		//checkNotNull(elem);
 		for(List<List<T>> rowl :stowage){
 			for(List<T> tierl : rowl){
 				for(int i= 0; i< tierl.size(); i++){

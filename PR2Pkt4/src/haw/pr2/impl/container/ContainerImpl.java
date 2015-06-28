@@ -1,11 +1,13 @@
 package haw.pr2.impl.container;
 
 import static com.google.common.base.Preconditions.*;
+
 import java.util.Collection;
 import java.util.Set;
 
 import haw.pr2.impl.Bounded3DimStackImpl;
 import haw.pr2.impl.UniqueIdImpl;
+import haw.pr2.impl.pallet.NullPalletFactory;
 import haw.pr2.impl.values.Factory;
 import haw.pr2.impl.values.NullStowageLocation;
 import haw.pr2.interfaces.adminValue.StowageLocation;
@@ -26,24 +28,13 @@ public class ContainerImpl extends AbstractContainer<ContainerImpl> {
 		checkNotNull(stowage);
 		return new ContainerImpl(stowage);
 	}
-	
-//	public static ContainerImpl valueOf(Stowage<Container> stowage, int bay,  int row, int tier) {
-//		return new ContainerImpl(stowage, bay, row, tier);
-//	}
 
 	private ContainerImpl(Stowage<Container> stowage) {
 		this.stowage = stowage;
 		this.id = UniqueIdImpl.valueOf();
 		this.loc = NullStowageLocation.valueOf();
-		this.palletStowage = Bounded3DimStackImpl.valueOf(5, 10, 5);
+		this.palletStowage = Bounded3DimStackImpl.valueOf(new NullPalletFactory(), 5, 10, 5);
 	}
-	
-//	private ContainerImpl(Stowage<Container> stowage, int bay, int row, int tier) {
-//		this.stowage = stowage;
-//		this.id = UniqueIdImpl.valueOf();
-//		this.loc = NullStowageLocation.valueOf();
-//		this.palletStowage = Bounded3DimStackImpl.valueOf(bay, row, tier);
-//	}
 
 	@Override
 	public Mass emptyMass() {
