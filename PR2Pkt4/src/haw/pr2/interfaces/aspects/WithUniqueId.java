@@ -1,4 +1,4 @@
-package haw.pr2.interfaces.marker;
+package haw.pr2.interfaces.aspects;
 /**
  * @author Robert
  * wird von comparable extended

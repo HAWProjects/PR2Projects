@@ -5,7 +5,7 @@ package haw.pr2.impl;
 
 import haw.pr2.interfaces.NullObjFactory;
 import haw.pr2.interfaces.adminValue.StowageLocation;
-import haw.pr2.interfaces.marker.WithForm;
+import haw.pr2.interfaces.aspects.WithForm;
 import haw.pr2.interfaces.physicObjects.cargo.Bounded3DimStack;
 
 import java.util.ArrayList;
