@@ -32,7 +32,6 @@ public class Test3DimStack {
 	public void setUp() throws Exception {
 		stowageContainer = ContainerStowageImpl.valueOf(15, 15, 15);
 		container = ContainerImpl.valueOf(stowageContainer);
-		
 	}
 	
     @Test

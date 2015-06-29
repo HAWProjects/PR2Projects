@@ -16,7 +16,7 @@ import haw.pr2.interfaces.physicValues.Mass;
 /**
  * @author Robert
  */
-class NullContainerImpl extends AbstractContainer<Container>
+public class NullContainerImpl extends AbstractContainer<Container>
 {
 	public static NullContainerImpl valueOf(){
 		return new NullContainerImpl();

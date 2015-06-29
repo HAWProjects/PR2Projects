@@ -16,10 +16,19 @@ public final class AdminValuesFactory
 		return NameImpl.valueOf(name);
 	}
 	
+	/**
+	 * @param bay
+	 * @param row
+	 * @param tier
+	 * @return StowageLocation
+	 */
 	public static StowageLocation stowageLocation(int bay, int row, int tier){
 		return StowageLocationImpl.valueOf(bay, row, tier);
 	}
 	
+	/**
+	 * @return NULLStowageLocation
+	 */
 	public static StowageLocation nullStowageLocation(){
 		return NULLStowageLocationImpl.valueOf(); 
 	}
