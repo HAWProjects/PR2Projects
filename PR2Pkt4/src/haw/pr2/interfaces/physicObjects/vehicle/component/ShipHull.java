@@ -11,7 +11,7 @@ import haw.pr2.interfaces.physicObjects.Body;
  * @author Robert
  *
  */
-public interface ShipHull<E extends ShipHull> extends Immutable, Body, WithUniqueId
+public interface ShipHull<E extends ShipHull<?>> extends Immutable, Body, WithUniqueId
 {
 	
 }

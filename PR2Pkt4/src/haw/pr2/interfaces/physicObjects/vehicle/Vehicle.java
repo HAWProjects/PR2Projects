@@ -14,7 +14,7 @@ import haw.pr2.interfaces.physicObjects.Body;
  * @author Robert
  *
  */
-public interface Vehicle <E extends Vehicle> extends Mutable, Body, WithUniqueId, WithPosition, WithPower, WithPropulsion
+public interface Vehicle <E extends Vehicle<E>> extends Mutable, Body, WithUniqueId, WithPosition, WithPower, WithPropulsion
 {
 	
 }

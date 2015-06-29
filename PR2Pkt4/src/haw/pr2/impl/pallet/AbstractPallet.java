@@ -10,12 +10,11 @@ import haw.pr2.interfaces.physicValues.BoundingBox;
  * @author Robert
  *
  */
-public abstract class AbstractPallet implements Pallet
+public abstract class AbstractPallet<E> implements Pallet
 {
 	@Override
 	public BoundingBox boundingBox()
 	{
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

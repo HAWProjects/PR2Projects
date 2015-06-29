@@ -4,7 +4,7 @@ import haw.pr2.interfaces.physicValues.AbstractValue;
 
 
 
-public abstract class AbstractValuesImpl<E extends AbstractValue> implements AbstractValue<E> {
+public abstract class AbstractValuesImpl<E extends AbstractValue<E>> implements AbstractValue<E> {
 
 	   double value;
 	    protected AbstractValuesImpl(double value){
@@ -51,7 +51,7 @@ public abstract class AbstractValuesImpl<E extends AbstractValue> implements Abs
 	    
 	    @Override
 	    public boolean checkInstance(Object obj){
-	    	return false;
+		    	return false;
 	    }
 	    
 	    @Override
@@ -79,7 +79,8 @@ public abstract class AbstractValuesImpl<E extends AbstractValue> implements Abs
 	        }
 	        
 	        // Wertegleichheit
-	        E other = (E)(obj);
+	        @SuppressWarnings("unchecked")
+			E other = (E)(obj);
 	        return (this.compareTo(other) == 0);
 	    }
 }

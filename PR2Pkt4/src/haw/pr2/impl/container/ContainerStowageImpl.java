@@ -18,8 +18,11 @@ import haw.pr2.interfaces.physicValues.Mass;
 public class ContainerStowageImpl implements ContainerStowage {
 
 	
-    private final int bays;
+    @SuppressWarnings("unused")
+	private final int bays;
+    @SuppressWarnings("unused")
     private final int rows;
+    @SuppressWarnings("unused")
     private final int tiers;
     
 	
@@ -38,8 +41,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public void load(int bayNo, int rowNo, Container elem) {
-		// TODO Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
@@ -47,7 +48,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public void load(Container elem) {
-		// TODO Auto-generated method stub
 	}
 
 	/* (non-Javadoc)
@@ -55,7 +55,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public void loadAll(Collection<? extends Container> coll) {
-		// TODO Auto-generated method stub
 	}
 
 	/* (non-Javadoc)
@@ -63,7 +62,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -72,7 +70,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -81,7 +78,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public boolean tierIsEmpty(int bay, int row) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -90,7 +86,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public boolean tierIsFull(int bay, int row) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -99,7 +94,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public boolean contains(Object elem) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -108,7 +102,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public boolean containsAll(Collection<?> coll) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -117,7 +110,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public Container get(StowageLocation loc) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -126,7 +118,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public Set<Container> getAll() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -135,7 +126,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public StowageLocation locationOf(Container elem) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -144,7 +134,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public Mass emptyMass() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -153,7 +142,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public Mass maxMass() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -162,7 +150,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public Mass mass() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -171,7 +158,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	 */
 	@Override
 	public BoundingBox boundingBox() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

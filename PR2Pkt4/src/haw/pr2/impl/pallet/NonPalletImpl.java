@@ -16,7 +16,7 @@ import haw.pr2.interfaces.physicValues.Mass;
  * @author Robert
  *
  */
-public class NonPalletImpl extends AbstractPallet
+public class NonPalletImpl extends AbstractPallet<Pallet>
 {
 	public static NonPalletImpl valueOf(){
 		return new NonPalletImpl();
@@ -37,20 +37,15 @@ public class NonPalletImpl extends AbstractPallet
 
 	@Override
 	public StowageLocation loc() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void setLocNull() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void setLoc(Stowage stowage, StowageLocation loc) {
-		// TODO Auto-generated method stub
-		
+	public void setLoc(Stowage<Pallet> stowage, StowageLocation loc) {
 	}
 
 	@Override

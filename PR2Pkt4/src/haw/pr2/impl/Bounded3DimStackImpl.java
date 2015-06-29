@@ -1,5 +1,5 @@
 /**
- * 
+ * Die Klasse Bounded3DimStackImpl repräsentiert einen 3Dimensionalen Stapel um beliebige Objekte vom Typ T zu stapeln.
  */
 package haw.pr2.impl;
 

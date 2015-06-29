@@ -15,7 +15,7 @@ import haw.pr2.interfaces.physicValues.Mass;
  * @author Robert
  *
  */
-public class NullPalletImpl extends AbstractPallet
+public class NullPalletImpl extends AbstractPallet<Pallet>
 {
 	private final UniqueId id;
 	
@@ -39,19 +39,15 @@ public class NullPalletImpl extends AbstractPallet
 
 	@Override
 	public StowageLocation loc() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void setLocNull() {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void setLoc(Stowage stowage, StowageLocation loc) {
-		// TODO Auto-generated method stub
-		
+	public void setLoc(Stowage<Pallet> stowage, StowageLocation loc) {
 	}
 
 	@Override

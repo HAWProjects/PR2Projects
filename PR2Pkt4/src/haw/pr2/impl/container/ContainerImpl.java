@@ -21,6 +21,7 @@ public class ContainerImpl extends AbstractContainer<ContainerImpl> {
 
 	private final UniqueId id;
 	private StowageLocation loc;
+	@SuppressWarnings("unused")
 	private Stowage<Container> stowage; // Container weiß zu welchem Lager er gehört
 	private final Bounded3DimStackImpl<Pallet> palletStowage;
 

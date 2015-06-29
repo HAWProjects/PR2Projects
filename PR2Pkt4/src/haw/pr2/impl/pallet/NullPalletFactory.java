@@ -7,7 +7,6 @@ public class NullPalletFactory implements NullObjFactory<Pallet> {
 
 	@Override
 	public Pallet createNullObj() {
-		// TODO Auto-generated method stub
 		return PalletFactory.NullPallet();
 	}
 

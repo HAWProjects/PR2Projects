@@ -15,12 +15,13 @@ import haw.pr2.interfaces.physicValues.Mass;
  * @author Robert
  */
 
-public class PalletImpl extends AbstractPallet
+public class PalletImpl extends AbstractPallet<Pallet>
 {
 	Mass mass;
     private final UniqueId id;
     private StowageLocation loc;
-    private Stowage<Pallet> stowage;
+    @SuppressWarnings("unused")
+	private Stowage<Pallet> stowage;
 	
 	public static PalletImpl valueOf(Mass mass){
 		return new PalletImpl(mass);

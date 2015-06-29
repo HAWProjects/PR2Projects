@@ -18,10 +18,6 @@ public class ContainerFactory {
 		return container(stowage);
 	}
 
-//	private static Container container(Stowage<Container> stowage, int breite, int laenge, int hoehe) {
-//		return ContainerImpl.valueOf(stowage, breite, laenge, hoehe);
-//	}
-
 	public static Container NULLContainer() {
 		return NullContainerImpl.valueOf();
 	}

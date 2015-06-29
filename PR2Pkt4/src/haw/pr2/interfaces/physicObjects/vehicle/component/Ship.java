@@ -9,7 +9,7 @@ import haw.pr2.interfaces.physicObjects.vehicle.Vehicle;
  * @author Robert
  *
  */
-public interface Ship<E extends Ship>  extends Vehicle
+public interface Ship<E extends Ship<E>> extends Vehicle<E>
 {
 	
 }
