@@ -50,7 +50,7 @@ public class Test3DimStack {
     }
     
 	 /**
-     * Test Stack ist voll bef�llt.
+     * Test Stack ist voll befuellt.
      */
 	@Test
 	public void test3DimStackFull() {

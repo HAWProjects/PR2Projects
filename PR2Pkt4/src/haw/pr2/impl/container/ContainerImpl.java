@@ -21,9 +21,8 @@ public class ContainerImpl extends AbstractContainer<ContainerImpl> {
 
 	private final UniqueId id;
 	private StowageLocation loc;
-	@SuppressWarnings("unused")
 	private Stowage<Container> stowage; // Container weiß zu welchem Lager er gehört
-	private final Bounded3DimStackImpl<Pallet> palletStowage;
+	private final Bounded3DimStackImpl<Pallet,Container> palletStowage;
 
 	public static ContainerImpl valueOf(Stowage<Container> stowage) {
 		checkNotNull(stowage);
@@ -34,7 +33,7 @@ public class ContainerImpl extends AbstractContainer<ContainerImpl> {
 		this.stowage = stowage;
 		this.id = UniqueIdImpl.valueOf();
 		this.loc = NullStowageLocation.valueOf();
-		this.palletStowage = Bounded3DimStackImpl.valueOf(new NullPalletFactory(), 5, 10, 5);
+		this.palletStowage = Bounded3DimStackImpl.valueOf(new NullPalletFactory(), stowage, 5, 10, 5);
 	}
 
 	@Override
@@ -158,5 +157,10 @@ public class ContainerImpl extends AbstractContainer<ContainerImpl> {
 	public int compareTo(Container o) {
 		return (int)((this.mass().sub(o.mass())).value()) ;
 	}
+	
+	public Stowage getStowage(){
+		return stowage;
+	}
+
 
 }

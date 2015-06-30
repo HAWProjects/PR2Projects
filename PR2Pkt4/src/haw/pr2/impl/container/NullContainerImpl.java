@@ -134,4 +134,5 @@ public class NullContainerImpl extends AbstractContainer<Container>
 	@Override
 	public void setLoc(Stowage<Container> stowage, StowageLocation loc) {
 	}
+
 }

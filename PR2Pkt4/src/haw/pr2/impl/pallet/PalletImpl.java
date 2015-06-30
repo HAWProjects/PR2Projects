@@ -20,7 +20,6 @@ public class PalletImpl extends AbstractPallet<Pallet>
 	Mass mass;
     private final UniqueId id;
     private StowageLocation loc;
-    @SuppressWarnings("unused")
 	private Stowage<Pallet> stowage;
 	
 	public static PalletImpl valueOf(Mass mass){
@@ -77,5 +76,8 @@ public class PalletImpl extends AbstractPallet<Pallet>
 	@Override
 	public int compareTo(Pallet o) {
 		return (int)(this.mass.sub(o.mass()).value());
+	}
+	public Stowage<Pallet> getStowage(){
+		return stowage;
 	}
 }

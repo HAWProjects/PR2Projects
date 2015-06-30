@@ -9,6 +9,7 @@ import java.util.Set;
 import haw.pr2.interfaces.adminValue.StowageLocation;
 import haw.pr2.interfaces.physicObjects.cargo.Container;
 import haw.pr2.interfaces.physicObjects.cargo.ContainerStowage;
+import haw.pr2.interfaces.physicObjects.cargo.Stowage;
 import haw.pr2.interfaces.physicValues.BoundingBox;
 import haw.pr2.interfaces.physicValues.Mass;
 
@@ -160,5 +161,6 @@ public class ContainerStowageImpl implements ContainerStowage {
 	public BoundingBox boundingBox() {
 		return null;
 	}
+
 
 }

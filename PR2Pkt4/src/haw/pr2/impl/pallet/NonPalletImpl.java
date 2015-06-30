@@ -67,4 +67,6 @@ public class NonPalletImpl extends AbstractPallet<Pallet>
 	public int compareTo(Pallet o) {
 		return 0;
 	}
+
+
 }

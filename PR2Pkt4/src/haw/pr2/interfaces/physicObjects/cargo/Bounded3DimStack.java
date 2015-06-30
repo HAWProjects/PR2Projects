@@ -8,6 +8,7 @@ import java.util.Set;
 
 import haw.pr2.interfaces.Mutable;
 import haw.pr2.interfaces.adminValue.StowageLocation;
+import haw.pr2.interfaces.aspects.WithStowLoc;
 
 public interface Bounded3DimStack<E> extends Mutable
 {
@@ -37,4 +38,5 @@ public interface Bounded3DimStack<E> extends Mutable
 	Set<E> getAll();
 	//sucht ein Element und gibt dessen Position zurück
 	StowageLocation locationOf(E elem);
+	
 }

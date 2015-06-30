@@ -69,4 +69,5 @@ public class NullPalletImpl extends AbstractPallet<Pallet>
 	public int compareTo(Pallet o) {
 		return 0;
 	}
+
 }
